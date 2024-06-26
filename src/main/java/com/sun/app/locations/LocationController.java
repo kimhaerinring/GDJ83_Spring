@@ -59,4 +59,23 @@ public class LocationController {
 		}
 		return url;
 	}
+
+	// delete
+	@RequestMapping("delete")
+	public String delete(Model model, LocationDTO locationDTO) throws Exception {
+		int result = locationService.delete(locationDTO);
+		String url = "commons/message";
+		if (result > 0) {
+			url = "redirect:./list";
+		} else {
+			url = "commons/message";
+			model.addAttribute("result", "지역 삭제에 실패하셨습니다");
+			model.addAttribute("url", "./list");
+		}
+		return url;
+	}
+
+	public void update() {
+
+	}
 }

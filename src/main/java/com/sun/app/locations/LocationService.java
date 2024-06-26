@@ -21,4 +21,14 @@ public class LocationService {
 	public int add(LocationDTO locationDTO) throws Exception {
 		return locationDAO.add(locationDTO);
 	}
+
+	public int delete(LocationDTO locationDTO) throws Exception {
+		return locationDAO.delete(locationDTO);
+
+	}
+
+	public int update(LocationDTO locationDTO) throws Exception {
+		return locationDAO.update(locationDTO);
+
+	}
 }

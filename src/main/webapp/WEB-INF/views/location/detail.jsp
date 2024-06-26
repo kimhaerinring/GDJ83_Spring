@@ -14,5 +14,7 @@
 		<h3>${dto.city}</h3>
 		<h3>${dto.state_province}</h3>
 		<h3>${dto.country_id}</h3>
+		<a href="./delete?location_id=${dto.location_id}">삭제</a>
+	<a href="./update?location_id=${dto.location_id}">수정</a>
 </body>
 </html>
