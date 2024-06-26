@@ -120,5 +120,20 @@ public class DepartmentDAO {
 		con.close();
 		return result;
 	}
+
 	// update
+	public int update(DepartmentDTO departmentDTO) throws Exception {
+		Connection con = dbConnection.getConnection();
+		String stl = "UPDATE  DEPARTMENTS SET DEPARTMENT_NAME=?, MANAGER_ID=?, LOCATION_ID=? WHERE DEPARTMENT_ID=?";
+		PreparedStatement st = con.prepareStatement(stl);
+		st.setString(1, departmentDTO.getDepartment_name());
+		st.setLong(2, departmentDTO.getManager_id());
+		st.setInt(3, departmentDTO.getLocation_id());
+		st.setInt(4, departmentDTO.getDepartment_id());
+		int result = st.executeUpdate();
+
+		st.close();
+		con.close();
+		return result;
+	}
 }

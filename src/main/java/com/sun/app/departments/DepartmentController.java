@@ -86,5 +86,28 @@ public class DepartmentController {
 		}
 		return url;
 	}
+
 	// update
+	@RequestMapping("update")
+	public String update(int department_id, Model model) throws Exception {
+		DepartmentDTO departmentDTO = departmentService.getDetail(department_id);
+		String url = "commons/message";
+		if (departmentDTO != null) {
+			model.addAttribute("dto", departmentDTO);
+			url = "department/update";
+		} else {
+			model.addAttribute("result", "없는 부서");
+			model.addAttribute("url", "./list");
+		}
+		return url;
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(DepartmentDTO departmentDTO) throws Exception {
+		int result = departmentService.update(departmentDTO);
+
+		return "redirect:./list";
+
+	}
+
 }
