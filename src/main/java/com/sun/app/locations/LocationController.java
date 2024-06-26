@@ -24,4 +24,39 @@ public class LocationController {
 
 		model.addAttribute("list", ar);
 	}
+
+	@RequestMapping("detail")
+	public String getDetail(Model model, int location_id) throws Exception {
+		LocationDTO locationDTO = locationService.getDetail(location_id);
+
+		String path = "commons/message";
+		if (locationDTO != null) {
+			model.addAttribute("dto", locationDTO);
+			path = "location/detail";
+		} else {
+			model.addAttribute("result", "지역을 찾을 수 없습니다요.");
+			model.addAttribute("url", "./list");
+		}
+		return path;
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public void add() {
+
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String add(Model model, LocationDTO locationDTO) throws Exception {
+		int result = locationService.add(locationDTO);
+		String url = "";
+
+		if (result > 0) {
+			url = "redirect:./list";
+		} else {
+			url = "commons/message";
+			model.addAttribute("result", "지역 등록에 실패하셨습니다");
+			model.addAttribute("url", "./list");
+		}
+		return url;
+	}
 }

@@ -24,7 +24,7 @@
 					<c:forEach items="${list}" var="dto">
 						<tr>
 								<td>${dto.department_id}</td>
-								<td>${dto.department_name}</td>
+								<td><a href ="detail?department_id=${dto.department_id}">${dto.department_name}</a>></td>
 								<td>${dto.manager_id}</td>
 						</tr>				
 					</c:forEach>
@@ -35,6 +35,11 @@
 			</tbody>
 		
 		</table>
+		
+			<div>
+					<a href="add" class="btn btn-success">부서 등록</a>
+			</div>
+		
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
