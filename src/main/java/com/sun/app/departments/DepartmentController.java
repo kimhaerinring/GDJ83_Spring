@@ -1,6 +1,7 @@
 package com.sun.app.departments;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,8 @@ public class DepartmentController {
 		System.out.println("departmen tlist");
 		// return "/department/list" url 경로를 jsp경로로 이용
 		List<DepartmentDTO> ar = departmentService.getList();
-
+		List<Map<String, Object>> list = departmentService.getInfo();
+		model.addAttribute("info", list);
 		// Model+view 2가지 방법
 		// ModelAndView mv = new ModelAndView();
 		// mv.addObject("list",ar);

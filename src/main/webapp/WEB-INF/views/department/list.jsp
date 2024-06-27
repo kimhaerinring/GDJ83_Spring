@@ -10,7 +10,16 @@
 </head>
 <body>
 	<h1>부서 리스트</h1>
-	
+		<div class="row">
+				<c:forEach items="${ info}" var="m">
+					<h6>${m.id }</h6>
+					<h6>${m.sum }</h6>
+					<h6>${m.avg}</h6>
+				</c:forEach>
+		
+		
+		
+		</div>
 	<div class="row col-md-6">
 		<table class="table table-hover">
 			<thead>

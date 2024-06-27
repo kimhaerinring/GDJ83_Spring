@@ -75,7 +75,24 @@ public class LocationController {
 		return url;
 	}
 
-	public void update() {
+	@RequestMapping("update")
+	public String update(int location_id, Model model) throws Exception {
+		LocationDTO locationDTO = locationService.getDetail(location_id);
+		String url = "commons/message";
+		if (locationDTO != null) {
+			model.addAttribute("dto", locationDTO);
+			url = "location/update";
+		} else {
+			model.addAttribute("result", "없는 부서");
+			model.addAttribute("url", "./list");
+		}
+		return url;
+	}
 
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(LocationDTO locationDTO) throws Exception {
+		int result = locationService.update(locationDTO);
+
+		return "redirect:./list";
 	}
 }
