@@ -18,4 +18,8 @@ public class ProductService {
 	public ProductDTO getDetail(String p_code) throws Exception {
 		return productDAO.getDetail(p_code);
 	}
+
+	public int add(ProductDTO productDTO) throws Exception {
+		return productDAO.add(productDTO);
+	}
 }

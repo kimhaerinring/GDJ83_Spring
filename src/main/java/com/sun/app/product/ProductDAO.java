@@ -78,4 +78,28 @@ public class ProductDAO {
 
 	}
 
+	// add
+	public int add(ProductDTO productDTO) throws Exception {
+		// 1,DB 연결
+		Connection con = dbConnection.getConnection();
+		// 2.SQL문 작성
+		String stl = "INSERT INTO PRODUCTS " + "VALUES (PRODUCTS_SEQ.NEXTVAL, ?,?, ?)";
+		// 3. 미리 전송
+		PreparedStatement st = con.prepareStatement(stl);
+		// 4. ?세팅 sql injection 방지
+		st.setString(1, productDTO.getAc_name());
+		st.setDouble(2, productDTO.getInterest());
+		st.setString(3, productDTO.getScript());
+
+		// 5. 최종 전송 및 결과 처리
+		int result = st.executeUpdate();
+
+		// 6.자원해체
+		st.close();
+		con.close();
+
+		return result;
+
+	}
+
 }
