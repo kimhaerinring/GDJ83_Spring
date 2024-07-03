@@ -8,8 +8,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sun.app.util.DBConnection;
 
@@ -105,18 +103,18 @@ public class ProductDAO {
 	}
 
 	// delete
-	@RequestMapping("delete")
-	public String delete(Model model, ProductDTO productDTO) throws Exception {
-		int result = productService.delete(productDTO);
-		String url = "commons/message";
-		if (result > 0) {
-			url = "redirect:./list";
-		} else {
-			url = "commons/message";
-			model.addAttribute("result", "부서삭제에 실패하셨습니다");
-			model.addAttribute("url", "./list");
-		}
-		return url;
-	}
+//	@RequestMapping("delete")
+//	public String delete(Model model, ProductDTO productDTO) throws Exception {
+//		int result = productService.delete(productDTO);
+//		String url = "commons/message";
+//		if (result > 0) {
+//			url = "redirect:./list";
+//		} else {
+//			url = "commons/message";
+//			model.addAttribute("result", "부서삭제에 실패하셨습니다");
+//			model.addAttribute("url", "./list");
+//		}
+//		return url;
+//	}
 
 }
