@@ -23,12 +23,12 @@ public class ProductController {
 	}
 
 	@RequestMapping("detail")
-	public String getDetail(Model model, String p_code) throws Exception {
-		ProductDTO productDTO = productService.getDetail(p_code);
+	public String getDetail(Model model, ProductDTO productDTO) throws Exception {
+		ProductDTO dto = productService.getDetail(productDTO);
 
 		String path = "commons/message";
-		if (productDTO != null) {
-			model.addAttribute("dto", productDTO);
+		if (dto != null) {
+			model.addAttribute("dto", dto);
 			path = "product/detail";
 		} else {
 			model.addAttribute("result", "부서를 찾을 수 없습니다요.");
@@ -56,4 +56,42 @@ public class ProductController {
 		}
 		return url;
 	}
+
+	@RequestMapping("delete")
+	public String delete(Model model, ProductDTO productDTO) throws Exception {
+		int result = productService.delete(productDTO);
+		String url = "commons/message";
+		if (result > 0) {
+			url = "redirect:./list";
+		} else {
+			url = "commons/message";
+			model.addAttribute("result", "부서삭제에 실패하셨습니다");
+			model.addAttribute("url", "./list");
+		}
+		return url;
+	}
+
+	// update
+	@RequestMapping("update")
+	public String update(ProductDTO productDTO, Model model) throws Exception {
+		ProductDTO dto = productService.getDetail(productDTO);
+		String url = "commons/message";
+		if (dto != null) {
+			model.addAttribute("dto", dto);
+			url = "product/update";
+		} else {
+			model.addAttribute("result", "없는 부서");
+			model.addAttribute("url", "./list");
+		}
+		return url;
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(ProductDTO productDTO) throws Exception {
+		int result = productService.update(productDTO);
+
+		return "redirect:./list";
+
+	}
+
 }

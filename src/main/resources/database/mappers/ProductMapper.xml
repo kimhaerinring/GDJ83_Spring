@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <!-- table 명 들어가야함 겹치면 안됩 -->
+  <mapper namespace="com.sun.app.product.ProductDAO">
+	  
+		<select id="getList"  resultType="com.sun.app.product.ProductDTO" >
+			SELECT * FROM PRODUCTS ORDER BY P_CODE ASC
+		</select>
+		
+		<select id="getDetail" resultType="com.sun.app.product.ProductDTO"  parameterType="com.sun.app.product.ProductDTO">
+			SELECT * FROM PRODUCTS WHERE P_CODE= #{p_code}
+		</select>
+		
+			<select id="add"  parameterType="com.sun.app.product.ProductDTO">
+			INSERT INTO PRODUCTS VALUES (PRODUCTS_SEQ.NEXTVAL, #{ac_name}, #{interest}, #{script})
+		</select>
+		
+		<select id="delete"  parameterType="com.sun.app.product.ProductDTO">
+			DELETE PRODUCTS WHERE P_CODE= #{p_code}
+		</select>
+		
+		<select id="update"  parameterType="com.sun.app.product.ProductDTO">
+			UPDATE  PRODUCTS SET AC_NAME=#{ac_name}, INTEREST=#{interest}, SCRIPT=#{script} WHERE P_CODE= #{p_code}
+		</select>
+		
+	
+  </mapper> 
+
+  

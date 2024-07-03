@@ -30,7 +30,8 @@
 		</tbody>
 	</table>
 
-
+	<a href="./delete?p_code=${dto.p_code}">삭제</a>
+	<a href="./update?p_code=${dto.p_code}">수정</a>
 
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
 </body>

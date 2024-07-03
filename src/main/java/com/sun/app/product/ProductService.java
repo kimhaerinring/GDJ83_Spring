@@ -15,11 +15,19 @@ public class ProductService {
 		return productDAO.getList();
 	}
 
-	public ProductDTO getDetail(String p_code) throws Exception {
-		return productDAO.getDetail(p_code);
+	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {
+		return productDAO.getDetail(productDTO);
 	}
 
 	public int add(ProductDTO productDTO) throws Exception {
 		return productDAO.add(productDTO);
+	}
+
+	public int delete(ProductDTO productDTO) throws Exception {
+		return productDAO.delete(productDTO);
+	}
+
+	public int update(ProductDTO productDTO) throws Exception {
+		return productDAO.update(productDTO);
 	}
 }
