@@ -8,23 +8,23 @@
   <!-- table 명 들어가야함 겹치면 안됩 -->
   <mapper namespace="com.sun.app.product.ProductDAO">
 	  
-		<select id="getList"  resultType="com.sun.app.product.ProductDTO" >
+		<select id="getList"  resultType="ProductDTO" >
 			SELECT * FROM PRODUCTS ORDER BY P_CODE ASC
 		</select>
 		
-		<select id="getDetail" resultType="com.sun.app.product.ProductDTO"  parameterType="com.sun.app.product.ProductDTO">
+		<select id="getDetail" resultType="ProductDTO"  parameterType="ProductDTO">
 			SELECT * FROM PRODUCTS WHERE P_CODE= #{p_code}
 		</select>
 		
-			<select id="add"  parameterType="com.sun.app.product.ProductDTO">
+			<select id="add"  parameterType="ProductDTO">
 			INSERT INTO PRODUCTS VALUES (PRODUCTS_SEQ.NEXTVAL, #{ac_name}, #{interest}, #{script})
 		</select>
 		
-		<select id="delete"  parameterType="com.sun.app.product.ProductDTO">
+		<select id="delete"  parameterType="ProductDTO">
 			DELETE PRODUCTS WHERE P_CODE= #{p_code}
 		</select>
 		
-		<select id="update"  parameterType="com.sun.app.product.ProductDTO">
+		<select id="update"  parameterType="ProductDTO">
 			UPDATE  PRODUCTS SET AC_NAME=#{ac_name}, INTEREST=#{interest}, SCRIPT=#{script} WHERE P_CODE= #{p_code}
 		</select>
 		

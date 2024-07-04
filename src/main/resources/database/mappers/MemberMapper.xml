@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.sun.app.member.MemberDAO">
+  
+
+		<select id="join" parameterType="com.sun.app.member.MemberDTO" >
+			INSERT INTO USERS VALUES(#{id},#{phone},#{password},#{name},#{ss_num},#{email})
+		</select>
+  
+  
+  		<select id="login" parameterType="com.sun.app.member.MemberDTO"  resultType="com.sun.app.member.MemberDTO">
+  		SELECT * FROM USERS WHERE ID=#{id} 
+  		</select>
+  
+  
+  </mapper>
