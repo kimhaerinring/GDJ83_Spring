@@ -11,11 +11,12 @@
 	<li class="nav-item"><a class="nav-link" href="#">회원</a></li>
 	<li class="nav-item"><a class="nav-link" href="#">조회</a></li>
 	<c:choose>
-		<c:when test="${not empty sessionScope.member}"></c:when>
-		<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a>
-		</li>
-		<li class="nav-item"><a class="nav-link" href="/member/mypage">마이페이지♣</a>
-		</li>
+		<c:when test="${not empty sessionScope.member}">
+			<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a>
+			</li>
+			<li class="nav-item"><a class="nav-link" href="/member/mypage">마이페이지♣</a>
+			</li>
+		</c:when>
 		<c:otherwise>
 			<li class="nav-item"><a class="nav-link" href="/member/join">회원가입</a>
 			</li>
@@ -23,8 +24,8 @@
 			</li>
 		</c:otherwise>
 	</c:choose>
-	
-	
+
+
 	<%-- <c:if test="${empty sessionScope.member}">
   <li class="nav-item">
     <a class="nav-link" href="/member/join">회원가입</a>
