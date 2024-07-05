@@ -15,5 +15,8 @@
   		SELECT * FROM USERS WHERE ID=#{id} 
   		</select>
   
-  
+  		<update id="update" parameterType="com.sun.app.member.MemberDTO" >
+  		UPDATE USERS SET NAME=#{name} ,EMAIL=#{email},PHONE=#{phone}
+  		WHERE ID=#{id}
+  		</update>
   </mapper>

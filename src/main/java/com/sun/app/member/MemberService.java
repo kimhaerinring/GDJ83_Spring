@@ -34,8 +34,12 @@ public class MemberService {
 	}
 
 	public MemberDTO mypage(MemberDTO memberDTO) throws Exception {
+		return memberDTO;
 
-		return memberDAO.mypage(memberDTO);
+	}
+
+	public int update(MemberDTO memberDTO) throws Exception {
+		return memberDAO.update(memberDTO);
 	}
 
 }
