@@ -19,4 +19,8 @@
   		UPDATE USERS SET NAME=#{name} ,EMAIL=#{email},PHONE=#{phone}
   		WHERE ID=#{id}
   		</update>
+  		
+  		<delete id="delete"  parameterType="com.sun.app.member.MemberDTO" >
+  		DELETE USERS WHERE ID=#{id}
+  		</delete>
   </mapper>
