@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <!-- table 명 들어가야함 겹치면 안됩 -->
+  <mapper namespace="com.sun.app.accounts.AccountDAO">
+	  
+			<insert  id="add" parameterType="com.sun.app.accounts.AccountDAO">
+			  		INSERT INTO ACCOUNT (AC_NUM, ID, P_CODE, A_BALANCE,A_DATE) VALUES (#{ac_num},#{id},#{p_code},0,SYSDATE)
+  	</insert>
+
+  <select id="list" parameterType="com.sun.app.member.MemberDTO"  resultType="com.sun.app.accounts.AccountDTO">
+  			SELECT AC_NUM,A_BALANCE FROM ACCOUNT WHERE ID=#{id}
+  		</select>
+  </mapper> 
+
+  
