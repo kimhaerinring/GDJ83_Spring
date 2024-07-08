@@ -1,5 +1,9 @@
 package com.sun.app.member;
 
+import java.util.List;
+
+import com.sun.app.accounts.AccountDTO;
+
 public class MemberDTO {
 	private String id;
 	private String phone;
@@ -7,6 +11,15 @@ public class MemberDTO {
 	private String name;
 	private String ss_num;
 	private String email;
+	private List<AccountDTO> dtos;
+
+	public List<AccountDTO> getDtos() {
+		return dtos;
+	}
+
+	public void setDtos(List<AccountDTO> dtos) {
+		this.dtos = dtos;
+	}
 
 	public String getId() {
 		return id;

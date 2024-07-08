@@ -16,7 +16,7 @@
 		
 		<c:if test="${not empty member}">
 				<div>
-						<h3>${member.member.name}님 환영합니다♥</h3>
+						<h3>${member.name}님 환영합니다♥</h3>
 				</div>
 		</c:if>
 				<div id="carouselExampleAutoplaying" class="carousel slide col-md-6" data-bs-ride="carousel">

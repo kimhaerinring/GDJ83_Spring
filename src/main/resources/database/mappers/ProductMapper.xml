@@ -16,9 +16,9 @@
 			SELECT * FROM PRODUCTS WHERE P_CODE= #{p_code}
 		</select>
 		
-			<select id="add"  parameterType="ProductDTO">
+			<insert id="add"  parameterType="ProductDTO">
 			INSERT INTO PRODUCTS VALUES (PRODUCTS_SEQ.NEXTVAL, #{ac_name}, #{interest}, #{script})
-		</select>
+		</insert>
 		
 		<select id="delete"  parameterType="ProductDTO">
 			DELETE PRODUCTS WHERE P_CODE= #{p_code}

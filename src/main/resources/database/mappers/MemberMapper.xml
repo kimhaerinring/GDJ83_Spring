@@ -2,25 +2,51 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.sun.app.member.MemberDAO">
-  
 
-		<select id="join" parameterType="com.sun.app.member.MemberDTO" >
-			INSERT INTO USERS VALUES(#{id},#{phone},#{password},#{name},#{ss_num},#{email})
-		</select>
-  
-  
-  		<select id="login" parameterType="com.sun.app.member.MemberDTO"  resultType="com.sun.app.member.MemberDTO">
-  		SELECT * FROM USERS WHERE ID=#{id} 
-  		</select>
-  
-  		<update id="update" parameterType="com.sun.app.member.MemberDTO" >
-  		UPDATE USERS SET NAME=#{name} ,EMAIL=#{email},PHONE=#{phone}
-  		WHERE ID=#{id}
-  		</update>
-  		
-  		<delete id="delete"  parameterType="com.sun.app.member.MemberDTO" >
-  		DELETE USERS WHERE ID=#{id}
-  		</delete>
-  </mapper>
+<mapper namespace="com.sun.app.member.MemberDAO">
+
+
+	<select id="join" parameterType="com.sun.app.member.MemberDTO">
+		INSERT INTO USERS
+		VALUES(#{id},#{phone},#{password},#{name},#{ss_num},#{email})
+	</select>
+
+
+	<select id="login" parameterType="com.sun.app.member.MemberDTO"
+		resultMap="loginResult">
+		SELECT U.*,A.*
+		FROM USERS U LEFT JOIN ACCOUNT A
+		ON U.ID=A.ID
+		WHERE U.ID=#{id}
+
+	</select>
+	<resultMap type="com.sun.app.member.MemberDTO" id="loginResult">
+
+		<id column="ID" property="id" />
+		<result column="PASSWORD" property="password" />
+		<result column="EMAIL" property="email" />
+		<result column="SS_NUM" property="ss_num" />
+		<result column="NAME" property="name" />
+		<result column="PHONE" property="phone" />
+
+		<collection property="dtos" javaType="java.util.List"
+			ofType="com.sun.app.accounts.AccountDTO">
+			<id column="AC_NUM" property="ac_num" />
+			<result column="ID" property="id" />
+			<result column="P_CODE" property="p_code" />
+			<result column="A_BALANCE" property="a_balance" />
+			<result column="A_DATE" property="a_date" />
+		</collection>
+
+	</resultMap>
+
+	<update id="update" parameterType="com.sun.app.member.MemberDTO">
+		UPDATE USERS SET NAME=#{name}
+		,EMAIL=#{email},PHONE=#{phone}
+		WHERE ID=#{id}
+	</update>
+
+	<delete id="delete" parameterType="com.sun.app.member.MemberDTO">
+		DELETE USERS WHERE ID=#{id}
+	</delete>
+</mapper>

@@ -1,7 +1,5 @@
 package com.sun.app.member;
 
-import java.util.Map;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -59,9 +57,9 @@ public class MemberController {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		Map<String, Object> map = memberService.login(memberDTO);
-		if (map != null) {
-			session.setAttribute("member", map);
+		memberDTO = memberService.login(memberDTO);
+		if (memberDTO != null) {
+			session.setAttribute("member", memberDTO);
 		} else {
 			model.addAttribute("result", "다시입력하쇼");
 			model.addAttribute("url", "/member/login");
