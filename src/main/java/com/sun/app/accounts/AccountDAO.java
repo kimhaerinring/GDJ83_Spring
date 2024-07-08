@@ -1,12 +1,8 @@
 package com.sun.app.accounts;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.sun.app.member.MemberDTO;
 
 @Repository
 public class AccountDAO {
@@ -20,7 +16,7 @@ public class AccountDAO {
 		return sqlSession.insert(NAMESPACE + "add", accountDTO);
 	}
 
-	public List<AccountDTO> list(MemberDTO memberDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE + "list", memberDTO);
+	public AccountDTO detail(AccountDTO accountDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "detail", accountDTO);
 	}
 }

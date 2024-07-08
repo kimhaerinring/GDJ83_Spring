@@ -3,18 +3,42 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  
-  <!-- table 명 들어가야함 겹치면 안됩 -->
-  <mapper namespace="com.sun.app.accounts.AccountDAO">
-	  
-			<insert  id="add" parameterType="com.sun.app.accounts.AccountDAO">
-			  		INSERT INTO ACCOUNT (AC_NUM, ID, P_CODE, A_BALANCE,A_DATE) VALUES (#{ac_num},#{id},#{p_code},0,SYSDATE)
-  	</insert>
 
-  <select id="list" parameterType="com.sun.app.member.MemberDTO"  resultType="com.sun.app.accounts.AccountDTO">
-  			SELECT AC_NUM,A_BALANCE FROM ACCOUNT WHERE ID=#{id}
-  		</select>
-  </mapper> 
+
+<!-- table 명 들어가야함 겹치면 안됩 -->
+<mapper namespace="com.sun.app.accounts.AccountDAO">
+
+	<insert id="add" parameterType="com.sun.app.accounts.AccountDAO">
+		INSERT INTO ACCOUNT (AC_NUM, ID,
+		P_CODE, A_BALANCE,A_DATE) VALUES
+		(#{ac_num},#{id},#{p_code},0,SYSDATE)
+	</insert>
+
+	<select id="detail"
+		parameterType="com.sun.app.accounts.AccountDTO"
+		resultMap="detailResult">
+		SELECT * FROM ACCOUNT A
+		INNER JOIN
+		 PRODUCTS P
+		ON A.P_CODE=P.P_CODE
+		WHERE A.AC_NUM= #{ac_num}
+	</select>
+	
+	<resultMap type="com.sun.app.accounts.AccountDTO"
+		id="detailResult">
+
+		<id column="AC_NUM" property="ac_num" />
+		<result column="ID" property="id" />
+		<result column="A_DATE" property="a_date" />
+		<result column="A_BALANCE" property="a_balance" />
+		<!-- 1대1의 관계 -->
+<association property="productDTO" javaType="ProductDTO">
+<result column="AC_NAME" property="ac_name"/>
+<result column="INTEREST" property="interest"/>
+
+</association>
+
+	</resultMap>
+</mapper> 
 
   

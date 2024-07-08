@@ -13,14 +13,22 @@
 
 
 	<select id="login" parameterType="com.sun.app.member.MemberDTO"
-		resultMap="loginResult">
-		SELECT U.*,A.*
-		FROM USERS U LEFT JOIN ACCOUNT A
-		ON U.ID=A.ID
-		WHERE U.ID=#{id}
-
+		resultType="com.sun.app.member.MemberDTO">
+		SELECT ID,NAME,PASSWORD
+		FROM USERS 
+		WHERE ID=#{id}
 	</select>
-	<resultMap type="com.sun.app.member.MemberDTO" id="loginResult">
+	
+	<select id="detail" parameterType="com.sun.app.member.MemberDTO" resultMap="loginResult">
+		SELECT *
+		FROM USERS U
+					LEFT JOIN
+					ACCOUNT A
+					ON U.ID=A.ID
+					WHERE U.ID=#{id}
+</select>
+	
+ <resultMap type="com.sun.app.member.MemberDTO" id="loginResult">
 
 		<id column="ID" property="id" />
 		<result column="PASSWORD" property="password" />

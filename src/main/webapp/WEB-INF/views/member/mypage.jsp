@@ -35,11 +35,13 @@
   <span class="input-group-text">주민번호</span>
   <input type="text" aria-label="ss_num" class="form-control" value="${member.ss_num}">
 </div>
-
+	
 <c:forEach items="${member.dtos}" var="ac">
 <div class="input-group">
+<a href="../accounts/detail?ac_num=${ac.ac_num}">
   <span class="input-group-text">계좌번호</span>
   <input type="text" aria-label="ac_num" class="form-control" value="${ac.ac_num}">
+  </a>
 </div>
 <div class="input-group">
   <span class="input-group-text">잔액</span>

@@ -32,7 +32,7 @@
 
 	<a class="btn btn-primary justify-content-end me-2"  href="./delete?p_code=${dto.p_code}">삭제</a>
 	<a  class="btn btn-primary justify-content-end me-2" href="./update?p_code=${dto.p_code}">수정</a>
-            <a class="btn btn-primary justify-content-end me-2" href="/account/add?p_code=${dto.p_code}" >상품가입</a>
+            <a class="btn btn-primary justify-content-end me-2" href="/accounts/add?p_code=${dto.p_code}" >상품가입</a>
 
 
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>

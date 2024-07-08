@@ -12,7 +12,11 @@ public class AccountService {
 
 	public int add(AccountDTO accountDTO) throws Exception {
 		Calendar calendar = Calendar.getInstance();
-		accountDTO.setP_code(calendar.getTimeInMillis()+"");
+		accountDTO.setAc_num(calendar.getTimeInMillis() + "");
 		return accountDAO.add(accountDTO);
+	}
+
+	public AccountDTO detail(AccountDTO accountDTO) throws Exception {
+		return accountDAO.detail(accountDTO);
 	}
 }
