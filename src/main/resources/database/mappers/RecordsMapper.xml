@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  
+  <mapper namespace="com.sun.app.records.RecordsDAO">
+	  <insert id="transfer" parameterType="com.sun.app.records.RecordsDTO">
+		INSERT INTO RECORDS
+		(AC_NUM, BALANCE, MONEY, OTHER_NUM)
+		VALUES	(
+				#{ac_num}
+			,	(
+					SELECT	A_BALANCE
+					FROM	ACCOUNT
+					WHERE	AC_NUM = #{ac_num}
+				)
+			,	#{money}*(-1)
+			,	#{other_num}
+			)
+  	</insert>
+  	
+  	  	<insert id="transferU" parameterType="com.sun.app.records.RecordsDTO">
+		INSERT INTO RECORDS
+		(AC_NUM, BALANCE, MONEY, OTHER_NUM)
+		VALUES	(
+				#{other_num}
+			,	(
+					SELECT	A_BALANCE
+					FROM	ACCOUNT
+					WHERE	AC_NUM = #{other_num}
+				)
+			,	#{money}
+			,	#{other_num}
+			)
+  	</insert>
+		
+	
+  </mapper> 
+
+  

@@ -14,6 +14,7 @@
 <table  class="table table-hover">
 		<thead>
 			<tr>
+				<th>상품이름</th>
 				<th>계좌번호</th>
 				<th>계좌 잔고</th>
 				<th>개설 일</th>
@@ -21,14 +22,17 @@
 		</thead>
 		<tbody>	
 				<tr>	
+					<td>${account.productDTO.ac_name}</td>
 					<td>${account.ac_num}</td>
 					<td>${account.a_balance}</td>
 					<td>${account.a_date}</td>
-			
 				</tr>	
 		</tbody>
 	</table>
-
+	
+	<div >
+	<a href="./transfer?ac_num=${account.ac_num}" >이체</a>
+	</div>
 	
           
 

@@ -35,10 +35,24 @@
 <association property="productDTO" javaType="ProductDTO">
 <result column="AC_NAME" property="ac_name"/>
 <result column="INTEREST" property="interest"/>
-
 </association>
-
 	</resultMap>
+	
+		<update id="transfer" parameterType="com.sun.app.records.RecordsDTO">
+		UPDATE ACCOUNT 
+		SET A_BALANCE =A_BALANCE - #{money}
+		WHERE AC_NUM = #{ac_num}
+	</update>
+	
+  	<update id="transferU" parameterType="com.sun.app.records.RecordsDTO">
+  		UPDATE	ACCOUNT
+		SET		A_BALANCE = A_BALANCE +  #{money}
+		WHERE	AC_NUM = #{other_num}
+  	</update>
+  	
+  	
+ 
+	
 </mapper> 
 
   

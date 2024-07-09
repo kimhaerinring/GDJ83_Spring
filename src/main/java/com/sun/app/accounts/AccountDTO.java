@@ -13,6 +13,15 @@ public class AccountDTO {
 	private Date a_date;
 	private MemberDTO memberDTO;
 	private ProductDTO productDTO;
+	private Long money;
+
+	public Long getMoney() {
+		return money;
+	}
+
+	public void setMoney(Long money) {
+		this.money = money;
+	}
 
 	public String getAc_num() {
 		return ac_num;
