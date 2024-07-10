@@ -51,7 +51,19 @@
   	</update>
   	
   	
- 
+ 	<select id="list" parameterType="ListOption" resultType="com.sun.app.records.RecordsDTO">
+		SELECT AC_NUM,MONEY,PERIOD, BALANCE FROM RECORDS
+		WHERE AC_NUM= #{ac_num}
+				<choose>
+			<when test="oo==1">AND MONEY>0</when>
+				<when test="oo==2">AND 0>MONEY</when>
+			</choose>
+			ORDER BY PERIOD
+			<choose>
+			<when test="order==1">ASC</when>
+				<when test="order==0">DESC</when>
+			</choose>
+	</select>
 	
 </mapper> 
 

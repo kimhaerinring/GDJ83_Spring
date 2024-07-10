@@ -18,4 +18,5 @@ public class RecordsDAO {
 	public int transferU(RecordsDTO recordsDTO) throws Exception {
 		return sqlSession.update(NAMESPACE + "transferU", recordsDTO);
 	}
+
 }

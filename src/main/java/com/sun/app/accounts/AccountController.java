@@ -1,5 +1,7 @@
 package com.sun.app.accounts;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +54,11 @@ public class AccountController {
 			return "/commons/message";
 		}
 		return "redirect:/member/mypage";
+	}
+
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	public void list(Model model, ListOption listOption) throws Exception {
+		List<RecordsDTO> ar = accountService.list(listOption);
+		model.addAttribute("dtos", ar);
 	}
 }

@@ -1,5 +1,7 @@
 package com.sun.app.accounts;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,4 +35,9 @@ public class AccountDAO {
 		num += recordsDAO.transferU(recordsDTO);
 		return num;
 	}
+
+	public List<RecordsDTO> list(ListOption listOption) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "list", listOption);
+	}
+
 }

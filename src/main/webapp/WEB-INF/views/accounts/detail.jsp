@@ -32,6 +32,8 @@
 	
 	<div >
 	<a href="./transfer?ac_num=${account.ac_num}" >이체</a>
+	<a href="./list?ac_num=${account.ac_num}&order=0" >내역 조회</a>
+	
 	</div>
 	
           

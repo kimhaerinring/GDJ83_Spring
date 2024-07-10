@@ -8,7 +8,7 @@
   <mapper namespace="com.sun.app.records.RecordsDAO">
 	  <insert id="transfer" parameterType="com.sun.app.records.RecordsDTO">
 		INSERT INTO RECORDS
-		(AC_NUM, BALANCE, MONEY, OTHER_NUM)
+		(AC_NUM,BALANCE,PERIOD, MONEY, OTHER_NUM)
 		VALUES	(
 				#{ac_num}
 			,	(
@@ -16,6 +16,7 @@
 					FROM	ACCOUNT
 					WHERE	AC_NUM = #{ac_num}
 				)
+			,SYSDATE
 			,	#{money}*(-1)
 			,	#{other_num}
 			)
@@ -23,7 +24,7 @@
   	
   	  	<insert id="transferU" parameterType="com.sun.app.records.RecordsDTO">
 		INSERT INTO RECORDS
-		(AC_NUM, BALANCE, MONEY, OTHER_NUM)
+		(AC_NUM,BALANCE,PERIOD, MONEY, OTHER_NUM)
 		VALUES	(
 				#{other_num}
 			,	(
@@ -31,6 +32,7 @@
 					FROM	ACCOUNT
 					WHERE	AC_NUM = #{other_num}
 				)
+			, SYSDATE
 			,	#{money}
 			,	#{other_num}
 			)
