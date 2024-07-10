@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.app.trades.TradeDAO">
+		<insert id="add" parameterType="TradeDTO">
+				INTSERT INTO  TRADES
+						(TRADENUM, TRADEDATE, TRADEAMOUNT, TRADEBALANCE, TRADEIO, ACCOUNTNUMBER)
+					VALUES
+						(
+						TRADE_SEQ.NEXTVAL,SUSDATE,#{tradeAmount},
+						(SELECT ACCOUNTBALANCE FROM ACCOUNT WHERE ACCOUNTNUMBER =#{accountNumber})+#{tradeAmount},
+						#{tradeIO},
+						#{accountNumber}
+						
+						)
+		</insert>
+<update id="update" parameterType="TradeDTO">
+<!-- tradeIO가0이면 입금,1이면 출금 -->
+		UPDATE ACCOUNT SET 
+		<if test="tradeIO=='0'">
+		ACCOUNTBALANCE=ACCOUNTBALANCE+#{tradeAmount}
+		WHERE ACCOUNTNUMBER =#{accountNumber}
+		</if>
+		<if test="tradeIO=='1'">
+		ACCOUNTBALANCE=ACCOUNTBALANCE-#{tradeAmount}
+		WHERE ACCOUNTNUMBER =#{accountNumber}
+		</if>
+</update>
+
+</mapper> 
+
+  

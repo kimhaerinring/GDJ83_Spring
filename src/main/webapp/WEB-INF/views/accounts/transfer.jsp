@@ -20,8 +20,8 @@
 					<input type="hidden" value="${dto.ac_num}" name="ac_num">
 					<div class="row g-3">
 						<div class="col-md-6">
-							<label for="other_num" class="form-label">계좌번호</label> <input
-								type="text" class="form-control" id="other_num" name="other_num"
+							<label for="receiveNumber" class="form-label">계좌번호</label> <input
+								type="text" class="form-control" id="receiveNumber" name="receiveNumber"
 								maxlength="50" placeholder="이체 할 계좌를 입력해주세요" required> <span
 								class="idchk"></span>
 						</div>
@@ -29,8 +29,8 @@
 							
 					<div class="row g-3">
 						<div class="col-md-6">
-							<label for="money" class="form-label">금액</label> <input
-								type="text" class="form-control" id="money" name="money"
+							<label for="tradeAmount" class="form-label">금액</label> <input
+								type="text" class="form-control" id="tradeAmount" name="tradeAmount"
 								maxlength="50" placeholder="이체 할 금액을 입력해주세요" required> <span
 								class="idchk"></span>
 						</div>

@@ -4,8 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sun.app.records.RecordsDAO;
-import com.sun.app.records.RecordsDTO;
+import com.sun.app.trades.TradeDAO;
 
 @Repository
 public class AccountDAO {
@@ -13,7 +12,7 @@ public class AccountDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	@Autowired
-	private RecordsDAO recordsDAO;
+	private TradeDAO recordsDAO;
 
 	private final String NAMESPACE = "com.sun.app.accounts.AccountDAO.";
 
@@ -25,12 +24,13 @@ public class AccountDAO {
 		return sqlSession.selectOne(NAMESPACE + "detail", accountDTO);
 	}
 
-	public int transfer(RecordsDTO recordsDTO) throws Exception {
-		int num = 0;
-		num += sqlSession.update(NAMESPACE + "transfer", recordsDTO);
-		num += sqlSession.update(NAMESPACE + "transferU", recordsDTO);
-		num += recordsDAO.transfer(recordsDTO);
-		num += recordsDAO.transferU(recordsDTO);
-		return num;
-	}
+//	public int transfer(TradeDTO recordsDTO) throws Exception {
+//		int num = 0;
+//		num += sqlSession.update(NAMESPACE + "transfer", recordsDTO);
+//		num += sqlSession.update(NAMESPACE + "transferU", recordsDTO);
+//		num += recordsDAO.transfer(recordsDTO);
+//		num += recordsDAO.transferU(recordsDTO);
+//		return num;
+//	}
+
 }

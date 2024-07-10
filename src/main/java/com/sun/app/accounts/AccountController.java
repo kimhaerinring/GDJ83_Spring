@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sun.app.member.MemberDTO;
 import com.sun.app.member.MemberService;
-import com.sun.app.records.RecordsDTO;
+import com.sun.app.trades.TradeDTO;
+import com.sun.app.trades.TradeService;
 
 @Controller
 @RequestMapping("/accounts/*")
@@ -20,6 +21,8 @@ public class AccountController {
 	private AccountService accountService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private TradeService tradeService;
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(AccountDTO accountDTO, HttpSession session) throws Exception {
@@ -42,15 +45,11 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "transfer", method = RequestMethod.POST)
-	public String transfer(Model model, HttpSession httpSession, RecordsDTO recordsDTO) throws Exception {
-		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
-		memberDTO = memberService.detail(memberDTO);
-		int num = accountService.transfer(memberDTO, recordsDTO);
-		if (num == -1) {
-			model.addAttribute("result", "존재하지 않는 계좌번호입니다.");
-			model.addAttribute("url", "/member/mypage");
-			return "/commons/message";
-		}
-		return "redirect:/member/mypage";
+	public String transfer(TradeDTO tradeDTO) throws Exception {
+		// tradeDTO: 계좌번호가 1개
+		// 보내는 계좌:accountNumber
+		// 받는 계좌:receiverNumber 없음
+		int result = tradeService.trade(tradeDTO);
+		return "redirect:../member/mypage";
 	}
 }
