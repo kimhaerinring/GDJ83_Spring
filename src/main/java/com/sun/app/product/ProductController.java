@@ -1,6 +1,6 @@
 package com.sun.app.product;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +18,8 @@ public class ProductController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void getList(Model model, Long page) throws Exception {
 		System.out.println(" list");
-		List<ProductDTO> ar = productService.getList(page);
-		model.addAttribute("list", ar);
+		Map<String, Object> map = productService.getList(page);
+		model.addAttribute("map", map);
 	}
 
 	@RequestMapping("detail")
