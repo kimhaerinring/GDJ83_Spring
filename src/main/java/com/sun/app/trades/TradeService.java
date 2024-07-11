@@ -2,13 +2,11 @@ package com.sun.app.trades;
 
 import org.springframework.stereotype.Service;
 
-import com.sun.app.accounts.AccountDTO;
-
 @Service
 public class TradeService {
 	private TradeDAO tradeDAO;
 
-	public int trade(TradeDTO tradeDTO, AccountDTO accountDTO) throws Exception {
+	public int trade(TradeDTO tradeDTO) throws Exception {
 		// 1번 계좌에서 5000월을 4444계좌로 이체
 		AccountDTO accountDTO = new TradeDTO();
 		accountDTO.setAccountNumber(tradeDTO.getAccountNumber);
@@ -31,4 +29,5 @@ public class TradeService {
 		result = tradeDAO.update(tradeDTO);
 		return result;
 	}
+
 }
