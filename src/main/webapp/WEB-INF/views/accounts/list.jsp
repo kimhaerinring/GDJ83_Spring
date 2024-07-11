@@ -15,7 +15,7 @@
 					onsubmit="return checkValue()">
 					<input type="hidden" value="${dto.ac_num}" name="ac_num">
 					
-					<div>
+					<div >
 					<a href="list?ac_num=${param.ac_num}&order=1">과거순으로</a>
 					<a href="list?ac_num=${param.ac_num}&order=0">최신순으로</a>
 					<a href="list?ac_num=${param.ac_num}&oo=1">입금만</a>

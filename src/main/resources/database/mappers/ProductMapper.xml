@@ -3,32 +3,46 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  
-  <!-- table 명 들어가야함 겹치면 안됩 -->
-  <mapper namespace="com.sun.app.product.ProductDAO">
-	  
-		<select id="getList"  resultType="ProductDTO" >
-			SELECT * FROM PRODUCTS ORDER BY P_CODE ASC
-		</select>
-		
-		<select id="getDetail" resultType="ProductDTO"  parameterType="ProductDTO">
-			SELECT * FROM PRODUCTS WHERE P_CODE= #{p_code}
-		</select>
-		
-			<insert id="add"  parameterType="ProductDTO">
-			INSERT INTO PRODUCTS VALUES (PRODUCTS_SEQ.NEXTVAL, #{ac_name}, #{interest}, #{script})
-		</insert>
-		
-		<select id="delete"  parameterType="ProductDTO">
-			DELETE PRODUCTS WHERE P_CODE= #{p_code}
-		</select>
-		
-		<select id="update"  parameterType="ProductDTO">
-			UPDATE  PRODUCTS SET AC_NAME=#{ac_name}, INTEREST=#{interest}, SCRIPT=#{script} WHERE P_CODE= #{p_code}
-		</select>
-		
+
+
+<!-- table 명 들어가야함 겹치면 안됩 -->
+<mapper namespace="com.sun.app.product.ProductDAO" >
+
+	<select id="getList" resultType="ProductDTO" parameterType="java.util.List">
+	<![CDATA[
+		SELECT * FROM
+		(SELECT ROWNUM R,B.* FROM
+		(SELECT * FROM PRODUCTS
+		ORDER BY P_CODE DESC
+		) B
+		)	 
+			WHERE R BETWEEN #{list[0]} AND #{list[1]}
+			]]>
+	</select>
+	<select id="getTotalCount" resultType="java.lang.Long">
+		SELECT COUNT(P_CODE) FROM PRODUCTS
+	</select>
 	
-  </mapper> 
+	<select id="getDetail" resultType="ProductDTO"
+		parameterType="ProductDTO">
+		SELECT * FROM PRODUCTS WHERE P_CODE= #{p_code}
+	</select>
+
+	<insert id="add" parameterType="ProductDTO">
+		INSERT INTO PRODUCTS VALUES (PRODUCTS_SEQ.NEXTVAL, #{ac_name}, #{interest},
+		#{script})
+	</insert>
+
+	<select id="delete" parameterType="ProductDTO">
+		DELETE PRODUCTS WHERE P_CODE= #{p_code}
+	</select>
+
+	<select id="update" parameterType="ProductDTO">
+		UPDATE PRODUCTS SET AC_NAME=#{ac_name}, INTEREST=#{interest},
+		SCRIPT=#{script} WHERE P_CODE= #{p_code}
+	</select>
+
+
+</mapper> 
 
   
