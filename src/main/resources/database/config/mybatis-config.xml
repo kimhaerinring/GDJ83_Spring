@@ -6,6 +6,7 @@
   		<typeAliases>
   					<typeAlias type="com.sun.app.product.ProductDTO" alias="ProductDTO"/>
   						<typeAlias type="com.sun.app.accounts.ListOption" alias="ListOption"/>
+  						<typeAlias type="com.sun.app.notice.NoticeDTO" alias="NoticeDTO"/>
   		</typeAliases>
   		
 

@@ -5,16 +5,17 @@
 
 <ul class="nav nav-tabs justify-content-center ">
 	<li class="nav-item"><a class="nav-link active"
-		aria-current="page" href="/">BankHome</a></li>
-	<li class="nav-item" ><a class="nav-link" href="/product/list">금융상품</a>
+		aria-current="page" href="/">BankHome🏠</a></li>
+		
+	<li class="nav-item" ><a class="nav-link" href="/notice/list">공지사항📌</a>
 	</li>
-	<li class="nav-item"><a class="nav-link" href="#">회원</a></li>
+	<li class="nav-item"><a class="nav-link" href="/product/list">상품정보🗒️</a></li>
 	<li class="nav-item"><a class="nav-link" href="#">조회</a></li>
 	<c:choose>
 		<c:when test="${not empty sessionScope.member}">
 			<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="/member/mypage">마이페이지♣</a>
+			<li class="nav-item"><a class="nav-link" href="/member/mypage">마이페이지🙋‍♂️</a>
 			</li>
 		</c:when>
 		<c:otherwise>
