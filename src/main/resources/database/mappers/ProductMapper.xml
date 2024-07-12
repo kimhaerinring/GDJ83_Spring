@@ -6,40 +6,69 @@
 
 
 <!-- table 명 들어가야함 겹치면 안됩 -->
-<mapper namespace="com.sun.app.product.ProductDAO" >
+<mapper namespace="com.sun.app.product.ProductDAO">
 
-	<select id="getList" resultType="ProductDTO" parameterType="java.util.List">
-	<![CDATA[
+
+	<select id="getList" resultType="ProductDTO"
+		parameterType="com.sun.app.util.Pager">
 		SELECT * FROM
 		(SELECT ROWNUM R,B.* FROM
 		(SELECT * FROM PRODUCTS
+		<where>
+			P_CODE >0
+			<choose>
+				<when test="kind=='k2'">
+					AND SCRIPT LIKE '%'||#{search}||'%'
+				</when>
+				<otherwise>
+					AND AC_NAME LIKE '%'||#{search}||'%'
+				</otherwise>
+			</choose>
+		</where>
 		ORDER BY P_CODE DESC
 		) B
-		)	 
-			WHERE R BETWEEN #{list[0]} AND #{list[1]}
-			]]>
+		)
+		WHERE R BETWEEN #{startNum} AND #{lastNum}
+
 	</select>
-	<select id="getTotalCount" resultType="java.lang.Long">
-		SELECT COUNT(P_CODE) FROM PRODUCTS
+	<select id="getTotalCount" resultType="java.lang.Long"
+		parameterType="com.sun.app.util.Pager">
+		SELECT COUNT(P_CODE) FROM
+		PRODUCTS
+		<where>
+			P_CODE >0
+			<choose>
+				<when test="kind=='k2'">
+					AND SCRIPT LIKE '%'||#{search}||'%'
+				</when>
+				<otherwise>
+					AND AC_NAME LIKE '%'||#{search}||'%'
+				</otherwise>
+			</choose>
+		</where>
 	</select>
-	
+
 	<select id="getDetail" resultType="ProductDTO"
 		parameterType="ProductDTO">
 		SELECT * FROM PRODUCTS WHERE P_CODE= #{p_code}
 	</select>
 
 	<insert id="add" parameterType="ProductDTO">
-		INSERT INTO PRODUCTS VALUES (PRODUCTS_SEQ.NEXTVAL, #{ac_name}, #{interest},
+		INSERT INTO PRODUCTS VALUES
+		(PRODUCTS_SEQ.NEXTVAL, #{ac_name}, #{interest},
 		#{script})
 	</insert>
 
 	<select id="delete" parameterType="ProductDTO">
-		DELETE PRODUCTS WHERE P_CODE= #{p_code}
+		DELETE PRODUCTS WHERE P_CODE=
+		#{p_code}
 	</select>
 
 	<select id="update" parameterType="ProductDTO">
-		UPDATE PRODUCTS SET AC_NAME=#{ac_name}, INTEREST=#{interest},
-		SCRIPT=#{script} WHERE P_CODE= #{p_code}
+		UPDATE PRODUCTS SET
+		AC_NAME=#{ac_name}, INTEREST=#{interest},
+		SCRIPT=#{script} WHERE
+		P_CODE= #{p_code}
 	</select>
 
 

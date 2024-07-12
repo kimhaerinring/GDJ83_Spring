@@ -69,7 +69,7 @@
 
 
 					<div class="col-12">
-						<button onclick="test()"type="submit" class="btn btn-primary" id="btn">Sign</button>
+						<button onclick="test()"type="submit" class="btn btn-success" id="btn">회원가입</button>
 					</div>
 				</form>
 

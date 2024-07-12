@@ -12,6 +12,29 @@
 	<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
 	<div class="container mt-5">
 		<div class="row justify-content-center text-conter">
+			<!-- 검색 입력 폼 -->
+
+			<nav class="navbar navbar-light bg-light">
+				<div class="container-fluid">
+					<form class="d-flex" action="./list" method="get">
+						<input name="search" class="form-control me-2" type="search"
+							placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+						
+						<div class="col-3">
+							<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+							<select name="kind" class="form-select" id="inlineFormSelectPref">
+								
+								<option value="k1">상품명</option>
+								<option value="k2">상품내용</option>
+
+							</select>
+						</div>
+					</form>
+				</div>
+			</nav>
+
+			<!--  -->
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -32,19 +55,21 @@
 			</table>
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
-			
-					<li class="page-item ${map.pre?'':'disabled'} "><a class="page-link" href="./list?page=${map.startNum -1}"
+
+					<li class="page-item ${map.pre?'':'disabled'} "><a
+						class="page-link" href="./list?page=${map.startNum -1}&kind=${map.kind}&search=${map.search}"
 						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-					</a>
-					</li>
-					
-					<c:forEach begin="${map.startNum }"  end="${map.lastNum}" step="1" var="i">
-					<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+					</a></li>
+
+					<c:forEach begin="${map.startNum }" end="${map.lastNum}" step="1"
+						var="i">
+						<li class="page-item"><a class="page-link"
+							href="./list?page=${i}&kind=${map.kind}&search=${map.search}">${i}</a></li>
 					</c:forEach>
-				
-					<li class="page-item ${map.next?'':'disabled'}">
-					<a class="page-link" href="./list?page=${map.lastNum+1}"aria-label="Next"> 
-					<span aria-hidden="true">&raquo;</span>
+
+					<li class="page-item ${map.next?'':'disabled'}"><a
+						class="page-link" href="./list?page=${map.lastNum+1}&kind=${map.kind}&search=${map.search}"
+						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
 				</ul>
 			</nav>

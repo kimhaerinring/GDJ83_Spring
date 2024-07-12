@@ -6,18 +6,20 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sun.app.util.Pager;
+
 @Repository
 public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.sun.app.product.ProductDAO.";
 
-	public Long getTotalCount() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + "getTotalCount");
+	public Long getTotalCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
 	}
 
-	public List<ProductDTO> getList(List<Long> ar) throws Exception {
-		return sqlSession.selectList(NAMESPACE + "getList", ar);
+	public List<ProductDTO> getList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getList", pager);
 
 	}
 

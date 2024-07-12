@@ -36,7 +36,7 @@
 	    <label for="script" class="form-label">통장 설명</label>
 	    <input type="text" value="${dto.script}"  class="form-control" id="script" name="script">
 			  </div>
-			  <button type="submit" class="btn btn-primary">등록</button>
+			  <button type="submit" class="btn btn-success">등록</button>
 			</form>
 		</div>
 	</div>

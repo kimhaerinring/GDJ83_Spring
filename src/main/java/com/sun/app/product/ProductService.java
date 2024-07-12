@@ -1,12 +1,12 @@
 package com.sun.app.product;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.sun.app.util.Pager;
 
 @Service
 public class ProductService {
@@ -14,7 +14,7 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 
-	public Map<String, Object> getList(Long page) throws Exception {
+	public Map<String, Object> getList(Long page, String kind, String search) throws Exception {
 		// page가 1이면 첫번째 숫자는 1
 		// 두번째숫자 10
 		// page가 2라면 11 20
@@ -22,18 +22,22 @@ public class ProductService {
 		if (page == null) {
 			page = 1L;
 		}
-//		if (page < 1) {
-//			page = 1L;
-//		}
+		if (page < 1) {
+			page = 1L;
+		}
+		if (search == null) {
+			search = "";
+		}
 		long perPage = 10L;
 		long startRow = (page - 1L) * perPage + 1L;
 		long lastRow = page * 10L;
-
-		List<Long> ar = new ArrayList<Long>();
-		ar.add(startRow);
-		ar.add(lastRow);
+		Pager pager = new Pager();
+		pager.setStartNum(startRow);
+		pager.setLastNum(lastRow);
+		pager.setKind(kind);
+		pager.setSearch(search);
 		// 1.총개수를 이용해서 총 페이지 수 구하기
-		long totalCount = productDAO.getTotalCount();
+		long totalCount = productDAO.getTotalCount(pager);
 		long totalPage = totalCount / perPage;
 		if (totalCount % perPage != 0) {
 			totalPage = totalCount / perPage + 1;
@@ -59,7 +63,6 @@ public class ProductService {
 		// lastnum 5 10 15 20 25 30
 		long startNum = (curBlock - 1) * perBlock + 1;
 		long lastNum = perBlock * curBlock;
-		long a = startNum + 5;
 
 		// 5. 이전블럭 다음 블럭 유무 판단
 		boolean pre = true; // true면 이전 블럭이 존재, false면 이전 블럭이 x
@@ -69,16 +72,18 @@ public class ProductService {
 		}
 		if (curBlock == totalBlock) {
 			next = false;
-			lastNum = totalPage;
+			lastNum = totalPage; // 마지막 페이지 수
 		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", productDAO.getList(ar));
+		map.put("list", productDAO.getList(pager));
 		map.put("totalPage", totalPage);
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
 		map.put("pre", pre);
 		map.put("next", next);
+		map.put("search", search);
+		map.put("kind", kind);
 		return map;
 	}
 

@@ -23,7 +23,7 @@
 								id="exampleCheck1"> <label class="form-check-label"
 								for="exampleCheck1">아이디기억하기</label>
 						</div>
-				<button class="btn btn-primary btn-block my-3">로그인</button>
+				<button class="btn btn-success btn-block my-3">로그인</button>
 			</div>
 				<button type="reset" class="btn btn-warning">다시입력</button>
 		</form>
