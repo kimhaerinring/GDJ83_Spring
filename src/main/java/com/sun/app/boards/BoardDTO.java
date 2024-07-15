@@ -1,15 +1,14 @@
-package com.sun.app.notice;
+package com.sun.app.boards;
 
 import java.sql.Date;
 
-public class NoticeDTO {
+public class BoardDTO {
 	private int boardNum;
 	private String boardCategory;
 	private String boardWriter;
 	private String boardContents;
 	private Date updateDate;
-	private Date CreateDate;
-
+	private Date createDate;
 	private int boardHit;
 	private String boardTitle;
 
@@ -54,11 +53,11 @@ public class NoticeDTO {
 	}
 
 	public Date getCreateDate() {
-		return CreateDate;
+		return createDate;
 	}
 
 	public void setCreateDate(Date createDate) {
-		CreateDate = createDate;
+		this.createDate = createDate;
 	}
 
 	public int getBoardHit() {
@@ -76,5 +75,4 @@ public class NoticeDTO {
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
 	}
-
 }

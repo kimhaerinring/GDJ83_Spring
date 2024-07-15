@@ -13,26 +13,30 @@
 
 <table  class="table table-hover">
 		<thead>
-			<tr>
-				<th>상품 코드</th>
-				<th>상품 명</th>
-				<th>이자율</th>
-				<th>통장 설명</th>
-			</tr>
-		</thead>
-		<tbody>	
-				<tr>	
-					<td>${dto.p_code}</td>
-					<td>${dto.ac_name}</td>
-					<td>${dto.interest}</td>
-					<td>${dto.script}</td>
-				</tr>	
+		  <tr>
+              <th>글번호</th>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>작성일</th>
+              <th>조회수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>${dto.boardNum}</td>
+              <td>${dto.boardTitle}</td>
+              <td>${dto.boardWriter}</td>
+              <td>${dto.createDate}</td>
+              <td>${dto.boardHit}</td>
+            </tr>
+            <tr>
+              <td colspan='5'>세부정보: ${dto.boardContents}</td>
+            </tr>
 		</tbody>
 	</table>
 
-	<a class="btn btn-primary justify-content-end me-2"  href="./delete?p_code=${dto.p_code}">삭제</a>
-	<a  class="btn btn-primary justify-content-end me-2" href="./update?p_code=${dto.p_code}">수정</a>
-            <a class="btn btn-primary justify-content-end me-2" href="/accounts/add?p_code=${dto.p_code}" >상품가입</a>
+	<a class="btn btn-primary justify-content-end me-2"  href="./delete?boardNum=${dto.boardNum}">삭제</a>
+	<a  class="btn btn-primary justify-content-end me-2" href="./update?boardNum=${dto.boardNum}">수정</a>
 
 
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>

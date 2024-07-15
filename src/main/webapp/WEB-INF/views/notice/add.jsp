@@ -5,39 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PRODUCT LIST</title>
 <c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
 </head>
 <body>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
-
-	<div class="container">
-				<div class="row">
-				<h1>게시글 작성</h1>
-				</div>
-			<div class="row">
-			<form action="./add" method="post">
-	  <div class="mb-3">
-	    <label for="ac_name" class="form-label">제목</label>
-	    <input type="text" class="form-control" id="ac_name" name="ac_name">
-			  </div>
-			
-		  <div class="mb-3">
-	    <label for="interest" class="form-label">작성자</label>
-	    <input type="text" class="form-control" id="interest" name="interest">
-			  </div>
-			  
-			    <div class="mb-3">
-	    <label for="script" class="form-label">내용</label>
-	    <input type="text" class="form-control" id="script" name="script">
-			  </div>
-			  <button type="submit" class="btn btn-primary">등록</button>
-			</form>
-		</div>
-	</div>
-
-
-
-	<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+  <c:import url="/WEB-INF/views/sample/headerNotice.jsp"></c:import>
+  <div class="container">
+    <form class="row g-3 mt-3" method="post">
+      <div class="col-md-12">
+        <label for="boardTitle" class="form-label">글제목</label>
+        <input type="text" class="form-control" name="boardTitle" value="${dto.boardTitle}">
+      </div>
+      <div class="col-12">
+        <label for="boardContents" class="form-label">글내용</label>
+        <textarea class="form-control" name="boardContents">${dto.boardContents}</textarea>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary me-md-2" type="submit">등록</button>
+      </div>
+    </form>
+  </div>
+  <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
 </body>
 </html>

@@ -1,12 +1,14 @@
 package com.sun.app.product;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.sun.app.util.Pager;
 
 @Controller
 @RequestMapping("/product/*")
@@ -16,10 +18,11 @@ public class ProductController {
 	private ProductService productService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getList(Model model, Long page, String kind, String search) throws Exception {
+	public void getList(Model model, Pager pager) throws Exception {
 		System.out.println(" list");
-		Map<String, Object> map = productService.getList(page, kind, search);
-		model.addAttribute("map", map);
+		List<ProductDTO> list = productService.getList(pager);
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", list);
 	}
 
 	@RequestMapping("detail")

@@ -4,66 +4,96 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.sun.app.notice.NoticeDAO">
-	<select id="getList" resultType="NoticeDTO"  parameterType="com.sun.app.util.Pager">
-	SELECT * FROM
-		(SELECT ROWNUM R,N.* FROM
-		(SELECT * FROM NOTICE
-		<where>
-			BOARDNUM >0
-			<choose>
-				<when test="kind=='k2'">
-					AND BOARDCATEGORY LIKE '%'||#{search}||'%'
-				</when>
-				<otherwise>
-					AND BOARDTITLE LIKE '%'||#{search}||'%'
-				</otherwise>
-			</choose>
-		</where>
-		ORDER BY BOARDNUM DESC
-		) N
-		)
-		WHERE R BETWEEN #{startNum} AND #{lastNum}
-
+<mapper namespace="com.sun.app.boards.notice.NoticeDAO">
+	<select id="getList" parameterType="Pager" resultType="NoticeDTO">
+		SELECT * FROM 
+		(	SELECT 		ROWNUM r, n.*
+			FROM	(	SELECT 		*
+						FROM 		NOTICE
+						<where>		
+									BOARDNUM > 0	
+							<choose>
+								<when test="kind == 'k1'">
+									AND BOARDTITLE LIKE '%'||#{search}||'%'
+								</when>
+								<otherwise>
+									AND BOARDCONTENTS LIKE '%'||#{search}||'%'
+								</otherwise>
+							</choose>
+						</where>
+						ORDER BY	BOARDNUM DESC	) n)
+		WHERE	r BETWEEN #{startRow} AND #{lastRow}
 	</select>
-		<update id="hit" parameterType="NoticeDTO">
+	
+	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
+		SELECT	COUNT(BOARDNUM)
+		FROM	(
+			SELECT	*
+			FROM	NOTICE
+			<where>		
+				BOARDNUM > 0	
+				<choose>
+					<when test="kind == 'k1'">
+						AND BOARDTITLE LIKE '%'||#{search}||'%'
+					</when>
+					<when test="kind == 'k3'">
+						AND BOARDWRITER LIKE '%'||#{search}||'%'
+					</when>
+					<otherwise>
+						AND BOARDCONTENTS LIKE '%'||#{search}||'%'
+					</otherwise>
+				</choose>
+			</where>
+		)
+	</select>
+	
+	<update id="update" parameterType="NoticeDTO">
+		UPDATE	NOTICE
+		SET		BOARDTITLE = #{boardTitle}, BOARDCONTENTS = #{boardContents}
+		WHERE 	BOARDNUM = #{boardNum}
+	</update>
+	
+	<insert id="add" parameterType="NoticeDTO">
+		INSERT INTO NOTICE (
+			BOARDNUM, BOARDWRITER, BOARDTITLE
+		,	BOARDCONTENTS, BOARDCATEGORY
+		)
+		VALUES (
+			BOARD_SEQ.NEXTVAL, #{boardWriter}, #{boardTitle}
+		,	#{boardContents}, NULL
+		)
+	</insert>
+	
+	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+		SELECT * FROM NOTICE WHERE BOARDNUM=#{boardNum}
+	</select>
+	
+	<delete id="delete" parameterType="NoticeDTO">
+		DELETE NOTICE WHERE BOARDNUM=#{boardNum}
+	</delete>
+	
+	<update id="hit" parameterType="NoticeDTO">
 		UPDATE NOTICE
 		SET BOARDHIT = BOARDHIT+1
 		WHERE BOARDNUM = #{boardNum}
 	</update>
-	<select id="getTotalCount" resultType="java.lang.Long"
-		parameterType="com.sun.app.util.Pager">
-		SELECT COUNT(BOARDNUM) FROM
-		NOTICE
-		<where>
-			BOARDNUM >0
+	
+	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
+		SELECT COUNT(BOARDNUM)
+		FROM NOTICE
+		<where>		
+			BOARDNUM > 0	
 			<choose>
-				<when test="kind=='k2'">
-					AND BOARDCATEGORY LIKE '%'||#{search}||'%'
+				<when test="kind == 'k1'">
+					AND BOARDTITLE LIKE '%'||#{search}||'%'
+				</when>
+				<when test="kind == 'k3'">
+					AND BOARDWRITER LIKE '%'||#{search}||'%'
 				</when>
 				<otherwise>
-					AND BOARDTITLE LIKE '%'||#{search}||'%'
+					AND BOARDCONTENTS LIKE '%'||#{search}||'%'
 				</otherwise>
 			</choose>
 		</where>
 	</select>
-	
-<select id="getDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
-	SELECT * FROM NOTICE WHERE BOARDNUM= #{boardNum}
-</select>
-<insert id="add"  parameterType="NoticeDTO">
-	INSERT INTO NOTICE VALUES
-		(BOARD_SEQ.NEXTVAL, #{boardTitle},
-		#{boardContents})
-</insert>
-
-<delete id="delete">
-	DELETE NOTICE WHERE BOARDNUM=#{boardNum}
-</delete>
-<select id="update">
-UPDATE NOTICE SET
-		BOARDTITLE=#{boardTitle},BOARDCONTENTS=#{boardContents} 
-		WHERE
-		BOARDNUM= #{boardNum}
-</select>
 </mapper>

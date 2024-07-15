@@ -1,4 +1,4 @@
-package com.sun.app.notice;
+package com.sun.app.boards.notice;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import com.sun.app.util.Pager;
 public class NoticeDAO {
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.sun.app.notice.NoticeDAO.";
+	private final String NAMESPACE = "com.sun.app.boards.notice.NoticeDAO.";
 
 	public Long getTotalCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);

@@ -28,7 +28,7 @@
 		ORDER BY P_CODE DESC
 		) B
 		)
-		WHERE R BETWEEN #{startNum} AND #{lastNum}
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
 
 	</select>
 	<select id="getTotalCount" resultType="java.lang.Long"
