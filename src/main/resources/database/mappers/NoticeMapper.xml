@@ -36,7 +36,7 @@
 					<when test="kind == 'k1'">
 						AND BOARDTITLE LIKE '%'||#{search}||'%'
 					</when>
-					<when test="kind == 'k3'">
+					<when test="kind == 'k2'">
 						AND BOARDWRITER LIKE '%'||#{search}||'%'
 					</when>
 					<otherwise>
@@ -54,13 +54,8 @@
 	</update>
 	
 	<insert id="add" parameterType="NoticeDTO">
-		INSERT INTO NOTICE (
-			BOARDNUM, BOARDWRITER, BOARDTITLE
-		,	BOARDCONTENTS, BOARDCATEGORY
-		)
-		VALUES (
-			BOARD_SEQ.NEXTVAL, #{boardWriter}, #{boardTitle}
-		,	#{boardContents}, NULL
+INSERT INTO NOTICE (BOARDNUM,BOARDWRITER,BOARDCONTENTS,CREATEDATE,BOARDTITLE)
+VALUES (BOARD_SEQ.NEXTVAL, #{boardWriter}, #{boardContents},SYSDATE,#{boardTitle}
 		)
 	</insert>
 	
@@ -78,22 +73,4 @@
 		WHERE BOARDNUM = #{boardNum}
 	</update>
 	
-	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
-		SELECT COUNT(BOARDNUM)
-		FROM NOTICE
-		<where>		
-			BOARDNUM > 0	
-			<choose>
-				<when test="kind == 'k1'">
-					AND BOARDTITLE LIKE '%'||#{search}||'%'
-				</when>
-				<when test="kind == 'k3'">
-					AND BOARDWRITER LIKE '%'||#{search}||'%'
-				</when>
-				<otherwise>
-					AND BOARDCONTENTS LIKE '%'||#{search}||'%'
-				</otherwise>
-			</choose>
-		</where>
-	</select>
 </mapper>

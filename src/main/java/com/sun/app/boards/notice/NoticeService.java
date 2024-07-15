@@ -3,41 +3,46 @@ package com.sun.app.boards.notice;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.sun.app.boards.BoardDAO;
+import com.sun.app.boards.BoardDTO;
+import com.sun.app.boards.BoardService;
 import com.sun.app.util.Pager;
 
 @Service
-public class NoticeService {
+public class NoticeService implements BoardService {
 	@Autowired
-	private NoticeDAO noticeDAO;
+	@Qualifier("noticeDAO")
+	private BoardDAO boardDAO;
 
-	public List<NoticeDTO> getList(Pager pager) throws Exception {
+	public List<BoardDTO> getList(Pager pager) throws Exception {
 
 		pager.makeRow();
-		long totalCount = noticeDAO.getTotalCount(pager);
+		long totalCount = boardDAO.getTotalCount(pager);
 		pager.makeNum(totalCount);
 
-		return noticeDAO.getList(pager);
+		return boardDAO.getList(pager);
 	}
 
-	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
-		return noticeDAO.getDetail(noticeDTO);
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
+		return boardDAO.getDetail(boardDTO);
 	}
 
-	public int update(NoticeDTO noticeDTO) throws Exception {
-		return noticeDAO.update(noticeDTO);
+	public int update(BoardDTO boardDTO) throws Exception {
+		return boardDAO.update(boardDTO);
 	}
 
-	public int delete(NoticeDTO noticeDTO) throws Exception {
-		return noticeDAO.delete(noticeDTO);
+	public int delete(BoardDTO boardDTO) throws Exception {
+		return boardDAO.delete(boardDTO);
 	}
 
-	public void hit(NoticeDTO noticeDTO) throws Exception {
-		noticeDAO.hit(noticeDTO);
+	public void hit(BoardDTO boardDTO) throws Exception {
+		boardDAO.hit(boardDTO);
 	}
 
-	public int add(NoticeDTO noticeDTO) throws Exception {
-		return noticeDAO.add(noticeDTO);
+	public int add(BoardDTO boardDTO) throws Exception {
+		return boardDAO.add(boardDTO);
 	}
 }

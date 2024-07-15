@@ -9,7 +9,7 @@
 <c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
 </head>
 <body>
-  <c:import url="/WEB-INF/views/sample/headerNotice.jsp"></c:import>
+<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
   <div class="container">
     <form class="row g-3 mt-3" method="post">
       <div class="col-md-12">

@@ -27,7 +27,7 @@
 								
 								<option value="k1">최신순</option>
 								<option value="k2">인기순</option>
-
+											<option value="k3">인기순</option>
 							</select>
 						</div>
 					</form>

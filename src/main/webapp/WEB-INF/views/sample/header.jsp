@@ -7,10 +7,10 @@
 	<li class="nav-item"><a class="nav-link active"
 		aria-current="page" href="/">BankHome🏠</a></li>
 		
-	<li class="nav-item" ><a class="nav-link" href="/notice/list">공지사항📌</a>
+	<li class="nav-item" ><a class="nav-link" href="/notice/list">📢공지사항</a>
 	</li>
-	<li class="nav-item"><a class="nav-link" href="/product/list">상품정보🗒️</a></li>
-	<li class="nav-item"><a class="nav-link" href="#">조회</a></li>
+	<li class="nav-item"><a class="nav-link" href="/product/list">🗒️상품정보</a></li>
+	<li class="nav-item"><a class="nav-link" href="/qna/list">📌Q&A</a></li>
 	<c:choose>
 		<c:when test="${not empty sessionScope.member}">
 			<li class="nav-item"><a class="nav-link" href="/member/logout">로그아웃</a>
