@@ -77,6 +77,10 @@ public class NoticeController {
 
 	}
 
+	public void hit(NoticeDTO noticeDTO) throws Exception {
+		noticeService.hit(noticeDTO);
+	}
+
 	@RequestMapping("delete")
 	public String delete(Model model, NoticeDTO noticeDTO) throws Exception {
 		int result = noticeService.delete(noticeDTO);

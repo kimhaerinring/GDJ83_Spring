@@ -94,6 +94,10 @@ public class NoticeService {
 		return noticeDAO.delete(noticeDTO);
 	}
 
+	public void hit(NoticeDTO noticeDTO) throws Exception {
+		noticeDAO.hit(noticeDTO);
+	}
+
 	public int add(NoticeDTO noticeDTO) throws Exception {
 		return noticeDAO.add(noticeDTO);
 	}

@@ -26,6 +26,11 @@
 		WHERE R BETWEEN #{startNum} AND #{lastNum}
 
 	</select>
+		<update id="hit" parameterType="NoticeDTO">
+		UPDATE NOTICE
+		SET BOARDHIT = BOARDHIT+1
+		WHERE BOARDNUM = #{boardNum}
+	</update>
 	<select id="getTotalCount" resultType="java.lang.Long"
 		parameterType="com.sun.app.util.Pager">
 		SELECT COUNT(BOARDNUM) FROM
