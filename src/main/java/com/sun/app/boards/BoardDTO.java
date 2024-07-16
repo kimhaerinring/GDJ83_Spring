@@ -3,7 +3,7 @@ package com.sun.app.boards;
 import java.sql.Date;
 
 public class BoardDTO {
-	private int boardNum;
+	private Integer boardNum;
 	private String boardCategory;
 	private String boardWriter;
 	private String boardContents;
@@ -11,12 +11,24 @@ public class BoardDTO {
 	private Date createDate;
 	private int boardHit;
 	private String boardTitle;
+	private Integer del;
 
-	public int getBoardNum() {
+	public Integer getDel() {
+		if (this.del == null) {
+			this.del = 0;
+		}
+		return del;
+	}
+
+	public void setDel(Integer del) {
+		this.del = del;
+	}
+
+	public Integer getBoardNum() {
 		return boardNum;
 	}
 
-	public void setBoardNum(int boardNum) {
+	public void setBoardNum(Integer boardNum) {
 		this.boardNum = boardNum;
 	}
 

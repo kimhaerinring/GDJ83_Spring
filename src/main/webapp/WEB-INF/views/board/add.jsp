@@ -12,7 +12,8 @@
 <c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
   <div class="container">
   <h1>${board} 작성</h1>
-    <form class="row g-3 mt-3" method="post">
+    <form class="row g-3 mt-3" method="post" >
+    <input type="hidden" value="${dto.boardNum}" name="boardNum"/>
           <div class="col-md-12">
         <label for="boardWriter" class="form-label">작성자</label>
         <input type="text" class="form-control" name="boardWriter"   value="${member.id}" disabled="disabled">

@@ -51,8 +51,26 @@
 				<tbody>
 					<c:forEach items="${requestScope.list }" var="dto">
 						<tr>
-							<td>${dto.boardNum}</td>
-							<td><a href="./detail?boardNum=${dto.boardNum}">${dto.boardTitle}</a></td>
+							<td>
+							<c:if test="${dto.del eq 0}">
+									${dto.boardNum}
+									</c:if>
+							</td>
+							<td>
+							<c:choose>
+								<c:when test="${dto.del eq 0}">
+									<a href="./detail?boardNum=${dto.boardNum}">
+							<c:catch >
+							<c:forEach begin="1" end="${dto.depth }">☞</c:forEach>
+							</c:catch>
+							${dto.boardTitle}
+							</a>
+								</c:when>
+								<c:otherwise>
+								삭제된 글 입니다.
+								</c:otherwise>
+							</c:choose>	
+							</td>
 							<td>${dto.boardWriter}</td>
 							<td>${dto.createDate}</td>
 							<td>${dto.boardHit}</td>

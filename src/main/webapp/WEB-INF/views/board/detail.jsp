@@ -34,10 +34,15 @@
             </tr>
 		</tbody>
 	</table>
-
+	<div>
+	<c:if test="${board ne 'Notice'}">
+	<a class="btn btn-primary justify-content-end me-2"  href="./reply?boardNum=${dto.boardNum}">답글</a>
+	</c:if>
+	<c:if test="${member.id eq dto.boardWriter}">
 	<a class="btn btn-primary justify-content-end me-2"  href="./delete?boardNum=${dto.boardNum}">삭제</a>
 	<a  class="btn btn-primary justify-content-end me-2" href="./update?boardNum=${dto.boardNum}">수정</a>
-
+	</c:if>
+</div>
 
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
 </body>

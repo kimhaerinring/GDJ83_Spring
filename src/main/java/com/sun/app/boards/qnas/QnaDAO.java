@@ -37,19 +37,19 @@ public class QnaDAO implements BoardDAO {
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(NAMESPACE + "update", boardDTO);
 	}
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(NAMESPACE + "delete", boardDTO);
 	}
 
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE + "detail", boardDTO);
+		return sqlSession.selectOne(NAMESPACE + "getDetail", boardDTO);
 	}
 
 	@Override
@@ -58,4 +58,12 @@ public class QnaDAO implements BoardDAO {
 
 	}
 
+	public int reply(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "reply", qnaDTO);
+	}
+
+	public int replyUpdate(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "replyUpdate", qnaDTO);
+
+	}
 }

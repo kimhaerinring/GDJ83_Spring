@@ -52,9 +52,32 @@
 			SYSDATE,0,'Q', BOARD_SEQ.CURRVAL,0,0
 			)
 	</insert>
-	<select id="detail" parameterType="QnaDTO" resultType="QnaDTO">
+	<select id="getDetail" parameterType="QnaDTO" resultType="QnaDTO">
 	SELECT * FROM QNA WHERE BOARDNUM=#{boardNum}
 	</select>
+	<insert id="reply" parameterType="QnaDTO">
+		INSERT INTO QNA
+			(BOARDNUM, BOARDWRITER,BOARDTITLE,BOARDCONTENTS,CREATEDATE,
+			UPDATEDATE,BOARDHIT,BOARDCATEGORY,REF,STEP,DEPTH
+			)
+			VALUES
+			( 
+			BOARD_SEQ.NEXTVAL, #{boardWriter},#{boardTitle},#{boardContents},SYSDATE,
+			SYSDATE,0,'Q',#{ref} ,#{step},#{depth}
+			)
+	</insert>
+	<update id="replyUpdate" parameterType="QnaDTO">
+		UPDATE  QNA SET STEP=STEP+1 
+		WHERE REF=#{ref} AND STEP >#{step}
+	</update>
+		<update id="update" parameterType="QnaDTO">
+		UPDATE  QNA SET BOARDTITLE =#{boardTitle}, BOARDCONTENTS=#{boardContents}, UPDATEDATE=SYSDATE
+		WHERE BOARDNUM =#{boardNum}
+	</update>
+	<delete id="delete" parameterType="QnaDTO">
+	UPDATE QNA SET DEL=1 WHERE BOARDNUM=#{boardNum}
+	</delete>
+	
 </mapper> 
 
   
