@@ -10,6 +10,9 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
+	<div>
+	${board}
+	</div>
 	<div class="container mt-5">
 		<div class="row justify-content-center text-conter">
 			<!-- 검색 입력 폼 -->
@@ -25,9 +28,9 @@
 							<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 							<select name="kind" class="form-select" id="inlineFormSelectPref">
 								
-								<option value="k1">최신순</option>
-								<option value="k2">인기순</option>
-											<option value="k3">인기순</option>
+								<option value="title">제목</option>
+								<option value="contents">내용</option>
+											<option value="writer">작성자</option>
 							</select>
 						</div>
 					</form>
@@ -41,7 +44,7 @@
 						<th>번호</th>
 						<th>제목</th>
 						<th>작성자</th>
-						<th>날짜</th>
+						<th>작성일</th>
 						<th>조회수</th>
 					</tr>
 				</thead>
@@ -79,7 +82,7 @@
 				</ul>
 			</nav>
 			<div>
-				<a href="add" class="btn btn-outline-success">글쓰기</a>
+				<a href="./add" class="btn btn-outline-success">글쓰기</a>
 			</div>
 		</div>
 	</div>

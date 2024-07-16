@@ -30,7 +30,7 @@
               <td>${dto.boardHit}</td>
             </tr>
             <tr>
-              <td colspan='5'>세부정보: ${dto.boardContents}</td>
+              <td colspan='5'>내용: ${dto.boardContents}</td>
             </tr>
 		</tbody>
 	</table>
