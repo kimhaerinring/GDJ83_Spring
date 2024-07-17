@@ -1,17 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
 </head>
 <body>
-	<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_nav.jsp"></c:import>
 
-	<div class="container">
+	        <!-- Page Header 사진 안에 글씨 넣는 곳-->
+        <header class="masthead" style="background-image: url('/resources/assets/img/moomin2.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>이체하기</h1>
+                            <span class="subheading">Transfer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3">이체</h4>
@@ -37,7 +51,7 @@
 						
 					</div>
 					
-<table  class="table table-hover">
+<table  class="table">
 		<thead>
 			<tr>
 				<th>계좌번호</th>
@@ -54,7 +68,7 @@
 	</table>
 	
 						<div class="col-12">
-							<button onclick="test()" type="submit" class="btn btn-primary"
+							<button onclick="test()" type="submit" class="btn btn-primary mb-3"
 								id="btn">이체</button>
 						</div>
 				</form>
@@ -62,8 +76,7 @@
 			</div>
 		</div>
 	</div>
-
-
-	<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+        
+<c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
 </body>
 </html>

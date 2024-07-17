@@ -1,43 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
 </head>
 <body>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_nav.jsp"></c:import>
 
-	<div class="container">
-				<div class="row">
-				<h1>통장 등록</h1>
-				</div>
-			<div class="row">
-			<form action="./add" method="post">
-	  <div class="mb-3">
-	    <label for="ac_name" class="form-label">통장이름</label>
-	    <input type="text" class="form-control" id="ac_name" name="ac_name">
-			  </div>
-			
-		  <div class="mb-3">
-	    <label for="interest" class="form-label">이자율</label>
-	    <input type="text" class="form-control" id="interest" name="interest">
-			  </div>
-			  
-			    <div class="mb-3">
-	    <label for="script" class="form-label">설명</label>
-	    <input type="text" class="form-control" id="script" name="script">
-			  </div>
-			  <button type="submit" class="btn btn-primary">등록</button>
-			</form>
-		</div>
+	        <!-- Page Header 사진 안에 글씨 넣는 곳-->
+        <header class="masthead" style="background-image: url('/resources/assets/img/moomin2.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Product Add</h1>
+                            <span class="subheading">Product</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+<div class="container">
+	<form action="/product/add" method="post">
+	<div>
+	<div class="mb-3">
+	  <label for="formGroupExampleInput" class="form-label">상품명</label>
+	  <input type="text" class="form-control" id="formGroupExampleInput" name = "ac_name">
 	</div>
+	<div class="mb-3">
+	  <label for="formGroupExampleInput" class="form-label">상품설명</label>
+	  <input type="text" class="form-control" id="formGroupExampleInput" name = "script">
+	</div>
+	<div class="mb-3">
+	  <label for="formGroupExampleInput" class="form-label">이자율</label>
+	  <input type="text" class="form-control" id="formGroupExampleInput" name ="interest">
+	</div>
+	</div>
+	<button type = "submit" class="btn btn-primary mb-3">추가하기</button>
+	</form>
+</div>      
 
 
 
-	<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+        
+<c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
 </body>
 </html>

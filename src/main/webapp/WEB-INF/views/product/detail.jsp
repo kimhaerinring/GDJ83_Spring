@@ -1,40 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
 </head>
 <body>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_nav.jsp"></c:import>
+	        <!-- Page Header 사진 안에 글씨 넣는 곳-->
+        <header class="masthead" style="background-image: url('/resources/assets/img/moomin2.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>${dto.ac_name}</h1>
+                            <h1>상품 소개</h1>
+                            <span class="subheading">Product</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center text-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                    	<p>🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻</p>
+                        <p>* 상품명 : ${dto.ac_name}</p>
+                        <p>* 이자율 : ${dto.interest}</p>
+                        <p>* 상품설명 : ${dto.script}</p>
+                    </div>
+                </div>
+		      <div class="col-12 mb-3" align="right">
+			    <a href="/accounts/add?p_code=${dto.p_code}"><button type="submit" class="btn btn-primary">가입하기</button></a>
+			    <a href="./update?p_code=${dto.p_code}"><button type="submit" class="btn btn-primary">수정하기</button></a>
+			    <a href="./delete?p_code=${dto.p_code}"><button type="submit" class="btn btn-primary">삭제하기</button></a>
+			  </div>
+            </div>
+        </main>
 
-<table  class="table table-hover">
-		<thead>
-			<tr>
-				<th>상품 코드</th>
-				<th>상품 명</th>
-				<th>이자율</th>
-				<th>통장 설명</th>
-			</tr>
-		</thead>
-		<tbody>	
-				<tr>	
-					<td>${dto.p_code}</td>
-					<td>${dto.ac_name}</td>
-					<td>${dto.interest}</td>
-					<td>${dto.script}</td>
-				</tr>	
-		</tbody>
-	</table>
-
-	<a class="btn btn-primary justify-content-end me-2"  href="./delete?p_code=${dto.p_code}">삭제</a>
-	<a  class="btn btn-primary justify-content-end me-2" href="./update?p_code=${dto.p_code}">수정</a>
-            <a class="btn btn-primary justify-content-end me-2" href="/accounts/add?p_code=${dto.p_code}" >상품가입</a>
-
-
-<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+        
+<c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
 </body>
 </html>
