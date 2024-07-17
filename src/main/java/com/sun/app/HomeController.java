@@ -31,6 +31,8 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 
 	public String home(HttpServletRequest request) {
+		
+		System.out.println("study conflict");
 		// 하위 내장 객체에서 -> 상위 객체 꺼내기 가능
 		// 상위-> 하위 X
 		HttpSession session = request.getSession();
