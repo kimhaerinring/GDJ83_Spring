@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
 
+
 </head>
 <body>
 <c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
@@ -42,6 +43,7 @@
 			</div>
 		</div>
 </div>
+
 
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
 </body>
