@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>My Test Board</title>
 <c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
 
 
