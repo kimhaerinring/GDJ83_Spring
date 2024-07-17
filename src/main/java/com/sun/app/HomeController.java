@@ -34,7 +34,7 @@ public class HomeController {
 		// 하위 내장 객체에서 -> 상위 객체 꺼내기 가능
 		// 상위-> 하위 X
 		HttpSession session = request.getSession();
-
+System.out.println("master");
 //		Cookie[] cookies = request.getCookies();
 //		for (Cookie c : cookies) {
 //			System.out.println(c.getName());

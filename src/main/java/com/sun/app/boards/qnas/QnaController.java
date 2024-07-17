@@ -20,6 +20,7 @@ import com.sun.app.util.Pager;
 @Controller
 @RequestMapping("/qna/*")
 public class QnaController {
+	private int master;
 	@Autowired
 	private QnaService qnaService;
 
