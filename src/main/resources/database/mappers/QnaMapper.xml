@@ -53,7 +53,7 @@
 			)
 	</insert>
 	<select id="getDetail" parameterType="QnaDTO" resultType="QnaDTO">
-	SELECT * FROM QNA WHERE BOARDNUM=#{boardNum}
+	SELECT * FROM QNA WHERE BOARDNUM=#{boardNum} AND DEL=0
 	</select>
 	<insert id="reply" parameterType="QnaDTO">
 		INSERT INTO QNA
