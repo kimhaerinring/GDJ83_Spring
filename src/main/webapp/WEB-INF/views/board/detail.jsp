@@ -1,49 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
 </head>
 <body>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_nav.jsp"></c:import>
+	        <!-- Page Header 사진 안에 글씨 넣는 곳-->
+        <header class="masthead" style="background-image: url('/resources/assets/img/moomin5.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>${dto.boardTitle}</h1>
+                            <span class="subheading">Notice</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content-->
+       	 <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <table class="table">
+						  <thead>
+						    <tr>
+						      <th scope="col">글제목</th>
+						      <th scope="col">작성자</th>
+						      <th scope="col">작성일</th>
+						      <th scope="col">조회수</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<tr>
+						  	  <td scope="col">${dto.boardTitle}</td>
+						      <td scope="col">${dto.boardWriter}</td>
+						      <td scope="col">${dto.createDate}</td>
+						      <td scope="col">${dto.boardHit}</td>
+						    </tr>
+						  </tbody>
+						  	<tr>
+						  	  <td scope="col" colspan="4">내용 : ${dto.boardContents}</td>
+						    </tr>
+	
+						</table>
+                    </div>
+                </div>
+                
+		      <div class="col-12 mb-3" align="right">
+			    <a href="./update?boardNum=${dto.boardNum}"><button type="submit" class="btn btn-primary">수정하기</button></a>
+			    <a href="./delete?boardNum=${dto.boardNum}"><button type="submit" class="btn btn-primary">삭제하기</button></a>
+			  </div>
+            </div>
+        </main>
 
-<table  class="table table-hover">
-		<thead>
-		  <tr>
-              <th>글번호</th>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>작성일</th>
-              <th>조회수</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>${dto.boardNum}</td>
-              <td>${dto.boardTitle}</td>
-              <td>${dto.boardWriter}</td>
-              <td>${dto.createDate}</td>
-              <td>${dto.boardHit}</td>
-            </tr>
-            <tr>
-              <td colspan='5'>내용: ${dto.boardContents}</td>
-            </tr>
-		</tbody>
-	</table>
-	<div>
-	<c:if test="${board ne 'Notice'}">
-	<a class="btn btn-primary justify-content-end me-2"  href="./reply?boardNum=${dto.boardNum}">답글</a>
-	</c:if>
-	<c:if test="${member.id eq dto.boardWriter}">
-	<a class="btn btn-primary justify-content-end me-2"  href="./delete?boardNum=${dto.boardNum}">삭제</a>
-	<a  class="btn btn-primary justify-content-end me-2" href="./update?boardNum=${dto.boardNum}">수정</a>
-	</c:if>
-</div>
-
-<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+        
+<c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
 </body>
 </html>

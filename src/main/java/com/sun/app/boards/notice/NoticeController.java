@@ -81,7 +81,7 @@ public class NoticeController {
 	public String update(NoticeDTO noticeDTO) throws Exception {
 		int result = noticeService.update(noticeDTO);
 
-		return "board/list";
+		return "redirect: ./list";
 
 	}
 

@@ -1,23 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
 </head>
 <body>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_nav.jsp"></c:import>
 
-	<div class="container">
+        <header class="masthead" style="background-image: url('/resources/assets/img/moomin6.png')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>회원가입</h1>
+                            <span class="subheading">Join</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+<div class="container mb-3">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3">회원가입</h4>
 				<form method="post" action="./join" id="frm"
 					onsubmit="return checkValue()">
-					<div class="row g-3">
+					<div class="row g-3 mb-3">
 						<div class="col-md-6">
 							<label for="id" class="form-label">아이디</label> <input type="text"
 								class="form-control" id="id" name="id" maxlength="50"
@@ -31,19 +44,12 @@
 
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mb-3">
 						<div class="col-md-6">
 							<label for="password" class="form-label">비밀번호</label> <input
 								type="password" class="form-control" name="password" id="password2"
 								placeholder="비밀번호를 입력해주세요" value="" required> <span
 								class="pwchk1"></span>
-						</div>
-
-						<div class="col-md-6">
-							<label for="password" class="form-label">비밀번호 확인</label> <input
-								type="password" class="form-control" name="password2"
-								id="password1" placeholder="비밀번호를 다시 한번 입력해주세요" value=""
-								required><span class="pwchk"></span>
 						</div>
 				
 					</div>
@@ -77,21 +83,7 @@
 		</div>
 	</div>
 
-<script type="text/javascript">
-    function test() {
-      var p1 = document.getElementById('password1').value;
-      var p2 = document.getElementById('password2').value;
-      if( p1 != p2 ) {
-        alert("비밀번호가 일치 하지 않습니다");
-        return false;
-      } else{
-        alert("비밀번호가 일치합니다");
-        return true;
-      }
-
-    }
-  </script>
-	<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+        
+<c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
 </body>
-
 </html>

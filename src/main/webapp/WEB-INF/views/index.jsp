@@ -1,50 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Test Board</title>
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
-
-
+<title>Insert title here</title>
+<c:import url="./template/header_css.jsp"></c:import>
 </head>
 <body>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
-<div class="container-fluid mt-5">
-		<div class="row justify-content-center">
-		
-		<c:if test="${not empty member}">
-				<div>
-						<h3>❤️${member.name}님 환영합니다❤️</h3>
-				</div>
+<c:import url="./template/header_nav.jsp"></c:import>
+
+	        <!-- Page Header 사진 안에 글씨 넣는 곳-->
+        <header class="masthead" style="background-image: url('/resources/assets/img/moomin3.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Haerin's HomePage</h1>
+                            <span class="subheading">어서오세요</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+       <c:if test="${empty member}">
+        <div class="container justify-content-center text-center">
+        <p>🌸회원이시라면 로그인을, 아니시라면 회원가입을 해주세요🌸</p>
+    	</div>
 		</c:if>
-				<div id="carouselExampleAutoplaying" class="carousel slide col-md-6" data-bs-ride="carousel">
-			  <div class="carousel-inner">
-			    <div class="carousel-item active">
-			      <img src="./resources/images/index/mumin1.jpg" class="d-block w-100" alt="...">
-			    </div>
-			    <div class="carousel-item">
-			      <img src="./resources/images/index/mumin2.jpg" class="d-block w-100" alt="...">
-			    </div>
-			    <div class="carousel-item">
-			      <img src="./resources/images/index/mumin3.jpg" class="d-block w-100" alt="...">
-			    </div>
-			  </div>
-			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="visually-hidden">Previous</span>
-			  </button>
-			  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="visually-hidden">Next</span>
-			  </button>
-			</div>
-		</div>
-</div>
-
-
-<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+		<c:if test="${not empty member}">
+        <div class="container justify-content-center text-center">
+        <p>🌸${member.id} 님 환영합니다🌸</p>
+    	</div>
+		</c:if>
+        
+<c:import url="./template/footer_script.jsp"></c:import>
 </body>
 </html>
