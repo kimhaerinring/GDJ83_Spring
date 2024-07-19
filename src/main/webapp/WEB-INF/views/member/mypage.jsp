@@ -26,8 +26,16 @@
         
  <div class="container">
 
-
   <div class="col-12">
+  <div>
+  	<c:if test="${not empty member.memberFileDTO}">
+  	<img alt="" src="/resources/upload/members/${member.memberFileDTO.filename}">
+  	</c:if>
+  	 	<c:if test="${empty member.memberFileDTO}">
+  	<img alt="" src="/resources/assets/img/moomin6.png">
+  	</c:if>
+  </div>
+  
     <label for="inputID" class="form-label">ID</label>
     <input type="text" class="form-control" id="inputEmail" name="id" value="${member.id}" readonly>
   </div>

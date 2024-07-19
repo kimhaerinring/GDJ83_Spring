@@ -28,62 +28,67 @@
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3">회원가입</h4>
-				<form method="post" action="./join" id="frm"
-					onsubmit="return checkValue()">
-					<div class="row g-3 mb-3">
-						<div class="col-md-6">
-							<label for="id" class="form-label">아이디</label> <input type="text"
-								class="form-control" id="id" name="id" maxlength="50"
-								placeholder="아이디를 입력해주세요" required> <span class="idchk"></span>
-						</div>
-						<div class="col-md-6">
-							<label for="name" class="form-label">이름</label> <input
-								type="text" class="form-control" name="name"
-								placeholder="이름을 입력해주세요" value="" required> <span
-								class="memberNamechk"></span>
+			<form method="post" action="./join" method="post" id="frm"
+				enctype="multipart/form-data">
+				<div class="row g-3 mb-3">
+					<div class="col-md-6">
+						<label for="id" class="form-label">아이디</label> <input type="text"
+							class="form-control" id="id" name="id" maxlength="50"
+							placeholder="아이디를 입력해주세요" required> <span class="idchk"></span>
+					</div>
+					<div class="col-md-6">
+						<label for="name" class="form-label" >이름</label> <input type="text"
+							class="form-control" name="name"  id="name" placeholder="이름을 입력해주세요"
+							value="" required>
 
-						</div>
 					</div>
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label for="password" class="form-label">비밀번호</label> <input
-								type="password" class="form-control" name="password" id="password2"
-								placeholder="비밀번호를 입력해주세요" value="" required> <span
-								class="pwchk1"></span>
-						</div>
-				
+				</div>
+				<div class="row mb-3">
+					<div class="col-md-6">
+						<label for="password" class="form-label">비밀번호</label> <input
+							type="password" class="form-control ch" name="password"
+							id="password" placeholder="비밀번호를 입력해주세요" value="" required>
+			<div id="pwerror"></div>
 					</div>
-					<div class="mb-3">
-						<label for="email" class="form-label">이메일</label> <input
-							type="text" class="form-control" name="email"
-							placeholder="metadog@example.com" required="required"> <span
-							class="emailchk"></span>
+					<div class="col-md-6">
+						<label for="inputPassword" class="form-label">비밀번호</label> <input
+							type="password" class="form-control ch" id="inputPasswordCheck"
+							name="member_pw">
+						<div id="pweeqrror"></div>
 					</div>
 
-					<div class="mb-3">
-						<label for="phone" class="form-label">휴대폰 번호</label> <input
-							type="text" class="form-control" name="phone"> <span
-							class="phchk"></span>
-					</div>
+				</div>
+				<div class="mb-3">
+					<label for="email" class="form-label">이메일</label> <input
+						type="text" class="form-control" name="email"id="email"
+						placeholder="metadog@example.com" required="required"> 
+				</div>
+
+				<div class="mb-3">
+					<label for="phone" class="form-label">휴대폰 번호</label> <input
+						type="text" class="form-control" name="phone"  id="phone"> 
+				</div>
 
 
-					<div class="mb-3">
-						<label for="ss_num" class="form-label">주민 번호</label> <input
-							type="text" class="form-control" name="ss_num"> <span
-							class="phchk"></span>
-					</div>
+				<div class="mb-3">
+					<label for="ss_num" class="form-label">주민 번호</label> <input
+						type="text" class="form-control" name="ss_num"> 
+				</div>
+				<div class="col-12">
+					<button type="button" id="add" class="btn btn-primary">PicturesAdd</button>
+				</div>
+				<div id="result"></div>
+				<div class="col-12">
+					<button type="submit" class="btn btn-success" id="btn">회원가입</button>
+				</div>
+			</form>
 
-
-					<div class="col-12">
-						<button onclick="test()"type="submit" class="btn btn-success" id="btn">회원가입</button>
-					</div>
-				</form>
-
-			</div>
 		</div>
 	</div>
+</div>
 
-        
 <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
+<script type="text/javascript" src="../resources/js/member/memberJoinCheck.js"></script>
+<script type="text/javascript" src="../resources/js/commons/files.js"></script>
 </body>
 </html>

@@ -55,6 +55,7 @@
                 </div>
                 
 		      <div class="col-12 mb-3" align="right">
+		      <a href="./reply?boardNum=${dto.boardNum}"><button type="submit" class="btn btn-primary">답글달기</button></a>
 			    <a href="./update?boardNum=${dto.boardNum}"><button type="submit" class="btn btn-primary">수정하기</button></a>
 			    <a href="./delete?boardNum=${dto.boardNum}"><button type="submit" class="btn btn-primary">삭제하기</button></a>
 			  </div>

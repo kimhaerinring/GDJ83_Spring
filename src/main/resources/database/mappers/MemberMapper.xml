@@ -4,7 +4,9 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.sun.app.member.MemberDAO">
-
+<insert id="addFile" parameterType="MemberFileDTO">
+	INSERT INTO MEMBERFILES VALUES (FILES_SEQ.NEXTVAL, #{id},#{filename},#{oriname})
+</insert>
 
 	<select id="join" parameterType="com.sun.app.member.MemberDTO">
 		INSERT INTO USERS
@@ -25,6 +27,9 @@
 					LEFT JOIN
 					ACCOUNT A
 					ON U.ID=A.ID
+						LEFT  OUTER JOIN
+						MEMBERFILES F
+						ON U.ID=F.ID
 					WHERE U.ID=#{id}
 </select>
 	
@@ -36,6 +41,14 @@
 		<result column="SS_NUM" property="ss_num" />
 		<result column="NAME" property="name" />
 		<result column="PHONE" property="phone" />
+		
+<association property="memberFileDTO" javaType="MemberFileDTO">
+<id column="FILENUM" property="filenum"/>
+<result column="FILENAME" property="filename"/>
+<result column="ORINAME" property="oriname"/>
+</association>
+
+
 
 		<collection property="dtos" javaType="java.util.List"
 			ofType="com.sun.app.accounts.AccountDTO">
