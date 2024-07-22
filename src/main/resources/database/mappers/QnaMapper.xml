@@ -41,6 +41,13 @@
 		)
 		WHERE R BETWEEN #{startRow} AND#{lastRow}
 	</select>
+	<select id="getNum" resultType="java.lang.Integer">
+	SELECT BOARD_SEQ.NEXTVAL FROM DUAL 
+</select>
+		<insert id="addFile" parameterType="BoardFileDTO">
+	INSERT INTO QNAFILES
+	VALUES (FILES_SEQ.NEXTVAL,#{boardNum} ,#{filename},#{oriname})
+</insert>
 	<insert id="add" parameterType="QnaDTO">
 
 			INSERT INTO QNA
@@ -50,7 +57,7 @@
 			VALUES
 			( 
 			#{boardNum}, #{boardWriter},#{boardTitle},#{boardContents},SYSDATE,
-			SYSDATE,0,'Q', BOARD_SEQ.CURRVAL,0,0
+			SYSDATE,0,'Q', #{boardNum},0,0
 			)
 	</insert>
 	<select id="getDetail" parameterType="QnaDTO" resultMap="getDetailResult">
@@ -84,7 +91,7 @@
 			)
 			VALUES
 			( 
-			BOARD_SEQ.NEXTVAL, #{boardWriter},#{boardTitle},#{boardContents},SYSDATE,
+			#{boardNum}, #{boardWriter},#{boardTitle},#{boardContents},SYSDATE,
 			SYSDATE,0,'Q',#{ref} ,#{step},#{depth}
 			)
 	</insert>
@@ -100,13 +107,7 @@
 	UPDATE QNA SET DEL=1 WHERE BOARDNUM=#{boardNum}
 	</delete>
 	
-	<select id="getNum" resultType="java.lang.Integer">
-	SELECT BOARD_SEQ.NEXTVAL FROM DUAL 
-</select>
-		<insert id="addFile" parameterType="BoardFileDTO">
-	INSERT INTO QNAFILES
-	VALUES (FILES_SEQ.NEXTVAL,#{boardNum} ,#{filename},#{oriname})
-</insert>
+	
 </mapper> 
 
   
