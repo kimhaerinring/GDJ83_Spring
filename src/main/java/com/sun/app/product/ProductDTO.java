@@ -1,10 +1,22 @@
 package com.sun.app.product;
 
+import java.util.List;
+
 public class ProductDTO {
 	private String p_code;
 	private String ac_name;
 	private Double interest;
 	private String script;
+	private List<ProductFileDTO> fileDTOs;
+	
+
+	public List<ProductFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+
+	public void setFileDTOs(List<ProductFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 
 	public String getP_code() {
 		return p_code;

@@ -2,11 +2,14 @@ package com.sun.app.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sun.app.util.Pager;
 
@@ -46,16 +49,13 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(Model model, ProductDTO productDTO) throws Exception {
-		int result = productService.add(productDTO);
+	public String add(ProductDTO productDTO, HttpSession session, MultipartFile[] files) throws Exception {
+		int result = productService.add(productDTO, session, files);
 		String url = "";
 
 		if (result > 0) {
 			url = "redirect:./list";
-		} else {
-			url = "commons/message";
-			model.addAttribute("result", "부서등록에 실패하셨습니다");
-			model.addAttribute("url", "./list");
+
 		}
 		return url;
 	}

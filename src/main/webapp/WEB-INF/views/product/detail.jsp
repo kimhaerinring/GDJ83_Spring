@@ -31,7 +31,14 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center text-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                     	<p>🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻🌻</p>
-                        <p>* 상품명 : ${dto.ac_name}</p>
+                    <div>
+                    	<c:forEach items="${dto.fileDTOs}" var="f">
+                    		<a href="/resources/upload/products/${f.filename}">${f.oriname}
+                    	</a>
+                    	</c:forEach>
+					</div>
+				
+					<p>* 상품명 : ${dto.ac_name}</p>
                         <p>* 이자율 : ${dto.interest}</p>
                         <p>* 상품설명 : ${dto.script}</p>
                     </div>

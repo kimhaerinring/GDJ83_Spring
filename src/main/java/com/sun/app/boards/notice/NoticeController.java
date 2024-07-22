@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sun.app.boards.BoardDTO;
 import com.sun.app.member.MemberDTO;
@@ -56,10 +57,10 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(Model model, NoticeDTO noticeDTO, HttpSession httpSession) throws Exception {
-		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+	public String add(Model model, NoticeDTO noticeDTO ,HttpSession session,MultipartFile[] files) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		noticeDTO.setBoardWriter(memberDTO.getId());
-		int result = noticeService.add(noticeDTO);
+		int result = noticeService.add(noticeDTO,session,files);
 		return "redirect:./list";
 	}
 

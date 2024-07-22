@@ -48,16 +48,40 @@
 		</where>
 	</select>
 
-	<select id="getDetail" resultType="ProductDTO"
+	<select id="getDetail" resultMap="getDetailResult"
 		parameterType="ProductDTO">
-		SELECT * FROM PRODUCTS WHERE P_CODE= #{p_code}
-	</select>
+		SELECT P.*,PF.* 
+		FROM PRODUCTS P
+			LEFT JOIN
+			PRODUCTSFILES PF
+			ON (P.P_CODE=PF.P_CODE)
+		WHERE P.P_CODE= #{p_code}
+	</select >
+	<resultMap type="ProductDTO" id="getDetailResult">
+		<id column="P_CODE" property="p_code"/>
+		<result column="AC_NAME" property="ac_name"/>
+		<result column="INTEREST" property="interest"/>
+		<result column="SCRIPT" property="script"/>
+		<collection property="fileDTOs" javaType="List" ofType="ProductFileDTO">
+		<id column="FILENUM" property="filenum"/>
+	<result column="FILENAME" property="filename"/>
+	<result column="ORINAME" property="oriname"/>
+		</collection>
+	</resultMap>
+<select id="getNum" resultType="java.lang.String">
+	SELECT PRODUCTS_SEQ.NEXTVAL FROM DUAL 
+</select>
 
 	<insert id="add" parameterType="ProductDTO">
 		INSERT INTO PRODUCTS VALUES
-		(PRODUCTS_SEQ.NEXTVAL, #{ac_name}, #{interest},
+		(#{p_code}, #{ac_name}, #{interest},
 		#{script})
 	</insert>
+<insert id="addFile" parameterType="ProductFileDTO">
+	INSERT INTO PRODUCTSFILES
+	VALUES (FILES_SEQ.NEXTVAL,#{p_code} ,#{filename},#{oriname})
+</insert>
+
 
 	<select id="delete" parameterType="ProductDTO">
 		DELETE PRODUCTS WHERE P_CODE=

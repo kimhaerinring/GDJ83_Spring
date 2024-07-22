@@ -11,6 +11,8 @@
   						<typeAlias type="com.sun.app.boards.BoardDTO" alias="BoardDTO"/>
   						<typeAlias type="com.sun.app.util.Pager" alias="Pager"/>
   						<typeAlias type="com.sun.app.member.MemberFileDTO" alias="MemberFileDTO"/>
+  						<typeAlias type="com.sun.app.product.ProductFileDTO" alias="ProductFileDTO"/>
+  						<typeAlias type="com.sun.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
   		</typeAliases>
   		
 

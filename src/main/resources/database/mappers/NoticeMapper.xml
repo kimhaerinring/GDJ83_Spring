@@ -52,17 +52,45 @@
 		SET		BOARDTITLE = #{boardTitle}, BOARDCONTENTS = #{boardContents}
 		WHERE 	BOARDNUM = #{boardNum}
 	</update>
+		
+	<select id="getNum" resultType="java.lang.Integer">
+	SELECT BOARD_SEQ.NEXTVAL FROM DUAL 
+</select>
 	
 	<insert id="add" parameterType="NoticeDTO">
 INSERT INTO NOTICE (BOARDNUM,BOARDWRITER,BOARDCONTENTS,CREATEDATE,BOARDTITLE)
-VALUES (BOARD_SEQ.NEXTVAL, #{boardWriter}, #{boardContents},SYSDATE,#{boardTitle}
+VALUES (#{boardNum}, #{boardWriter}, #{boardContents},SYSDATE,#{boardTitle}
 		)
 	</insert>
+	<insert id="addFile" parameterType="BoardFileDTO">
+	INSERT INTO NOTICEFILES
+	VALUES (FILES_SEQ.NEXTVAL,#{boardNum} ,#{filename},#{oriname})
+</insert>
 	
-	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
-		SELECT * FROM NOTICE WHERE BOARDNUM=#{boardNum}
+	<select id="getDetail" parameterType="NoticeDTO" resultMap="getDetailResult">
+		SELECT N.*,NO.* 
+		FROM NOTICE N
+		LEFT JOIN
+		NOTICEFILES NO
+		ON (N.BOARDNUM=NO.BOARDNUM)
+		WHERE N.BOARDNUM=#{boardNum}
 	</select>
-	
+	<resultMap type="NoticeDTO" id="getDetailResult">
+		<id column="BOARDNUM" property="boardNum"/>
+		<result column="BOARDCATEGORY" property="boardCategory"/>
+		<result column="BOARDWRITER" property="boardWriter"/>
+		<result column="BOARDCONTENTS" property="boardContents"/>
+			<result column="BOARDTITLE" property="boardTitle"/>
+				<result column="BOARDHIT" property="boardHit"/>
+				<result column="CREATEDATE" property="createDate"/>
+					<result column="UPDATEDATE" property="updateDate"/>
+					
+		<collection property="fileDTOs" javaType="List" ofType="BoardFileDTO">
+		<id column="FILENUM" property="filenum"/>
+	<result column="FILENAME" property="filename"/>
+	<result column="ORINAME" property="oriname"/>
+		</collection>
+	</resultMap>
 	<delete id="delete" parameterType="NoticeDTO">
 		DELETE NOTICE WHERE BOARDNUM=#{boardNum}
 	</delete>

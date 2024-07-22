@@ -45,7 +45,7 @@
 </c:choose>  
 
 <div class="container">
- <form class="row g-3 mt-3" method="post" >
+ <form class="row g-3 mt-3" method="post" enctype="multipart/form-data">
     <input type="hidden" value="${dto.boardNum}" name="boardNum"/>
           <div class="col-md-12">
         <label for="boardWriter" class="form-label">작성자</label>
@@ -59,6 +59,14 @@
         <label for="boardContents" class="form-label">글내용</label>
         <textarea class="form-control" name="boardContents">${dto.boardContents}</textarea>
       </div>
+      <div class="col-12">
+					<button type="button" id="add" class="btn btn-primary">사진추가</button>
+				</div>
+				<div id="result"></div>
+	
+	<script type="text/javascript" src="../resources/js/commons/files.js"></script>
+	<script >setMax(5);</script>
+	
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button class="btn btn-primary me-md-2 mb-3" type="submit">등록</button>
       </div>

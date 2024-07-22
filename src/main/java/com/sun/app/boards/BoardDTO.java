@@ -1,6 +1,9 @@
 package com.sun.app.boards;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.sun.app.product.ProductFileDTO;
 
 public class BoardDTO {
 	private Integer boardNum;
@@ -12,6 +15,15 @@ public class BoardDTO {
 	private int boardHit;
 	private String boardTitle;
 	private Integer del;
+	private List<BoardFileDTO> fileDTOs;
+	
+	public List<BoardFileDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+
+	public void setFileDTOs(List<BoardFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 
 	public Integer getDel() {
 		if (this.del == null) {

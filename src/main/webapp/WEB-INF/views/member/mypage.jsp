@@ -77,7 +77,7 @@
   		<c:forEach items="${member.dtos}" var="ac">
 		<tr>
 		
-			<td><a href="../accounts/detail?ac_num=${ac.ac_num}"">${ac.ac_num}</a></td>
+			<td><a href="../accounts/detail?ac_num=${ac.ac_num}">${ac.ac_num}</a></td>
 			<td> ${ac.a_balance}</td>
 
 		

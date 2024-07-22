@@ -26,7 +26,7 @@
         </header>
 
 <div class="container">
-	<form action="/product/add" method="post">
+	<form action="/product/add" method="post" enctype="multipart/form-data">
 	<div>
 	<div class="mb-3">
 	  <label for="formGroupExampleInput" class="form-label">상품명</label>
@@ -40,7 +40,13 @@
 	  <label for="formGroupExampleInput" class="form-label">이자율</label>
 	  <input type="text" class="form-control" id="formGroupExampleInput" name ="interest">
 	</div>
+		<div class="col-12">
+					<button type="button" id="add" class="btn btn-primary">사진추가</button>
+				</div>
+				<div id="result"></div>
 	</div>
+	<script type="text/javascript" src="../resources/js/commons/files.js"></script>
+	<script >setMax(5);</script>
 	<button type = "submit" class="btn btn-primary mb-3">추가하기</button>
 	</form>
 </div>      

@@ -75,7 +75,7 @@
 						type="text" class="form-control" name="ss_num"> 
 				</div>
 				<div class="col-12">
-					<button type="button" id="add" class="btn btn-primary">PicturesAdd</button>
+					<button type="button" id="add" class="btn btn-primary">사진추가</button>
 				</div>
 				<div id="result"></div>
 				<div class="col-12">

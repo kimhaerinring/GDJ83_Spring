@@ -6,7 +6,19 @@ public class QnaDTO extends BoardDTO {
 	private Long ref;
 	private Long step;
 	private Long depth;
+	private Integer del;
+	
+	public Integer getDel() {
+		if (this.del == null) {
+			this.del = 0;
+		}
+		return del;
+	}
 
+	public void setDel(Integer del) {
+		this.del = del;
+	}
+	
 	public Long getRef() {
 		return ref;
 	}
