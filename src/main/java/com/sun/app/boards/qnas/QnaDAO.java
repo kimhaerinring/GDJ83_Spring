@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sun.app.boards.BoardDAO;
 import com.sun.app.boards.BoardDTO;
 import com.sun.app.boards.BoardFileDTO;
-
+import com.sun.app.files.FileDTO;
 import com.sun.app.util.Pager;
 
 @Repository
@@ -62,7 +62,11 @@ public class QnaDAO implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE + "getDetail", boardDTO);
 	}
-
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE + "fileDetail", fileDTO);
+	}
 	@Override
 	public void hit(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub

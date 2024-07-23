@@ -1,6 +1,8 @@
 package com.sun.app.product;
 
 import java.util.List;
+import java.util.Map;
+import com.sun.app.member.MemberDTO;
 import com.sun.app.product.ProductFileDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,12 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.sun.app.product.ProductDAO.";
 
+public int addWish(Map<String,Object>map)throws Exception {
+	return sqlSession.insert(NAMESPACE + "addWish", map);
+}	
+public List<ProductDTO> wishList(MemberDTO memberDTO)throws Exception {
+	return sqlSession.selectList(NAMESPACE + "wishList", memberDTO);
+}	
 	public Long getTotalCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
 	}

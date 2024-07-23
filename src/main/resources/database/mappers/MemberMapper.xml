@@ -8,20 +8,20 @@
 	INSERT INTO MEMBERFILES VALUES (FILES_SEQ.NEXTVAL, #{id},#{filename},#{oriname})
 </insert>
 
-	<select id="join" parameterType="com.sun.app.member.MemberDTO">
+	<select id="join" parameterType="MemberDTO">
 		INSERT INTO USERS
 		VALUES(#{id},#{phone},#{password},#{name},#{ss_num},#{email})
 	</select>
 
 
-	<select id="login" parameterType="com.sun.app.member.MemberDTO"
-		resultType="com.sun.app.member.MemberDTO">
+	<select id="login" parameterType="MemberDTO"
+		resultType="MemberDTO">
 		SELECT ID,NAME,PASSWORD
 		FROM USERS 
 		WHERE ID=#{id}
 	</select>
 	
-	<select id="detail" parameterType="com.sun.app.member.MemberDTO" resultMap="loginResult">
+	<select id="detail" parameterType="MemberDTO" resultMap="loginResult">
 		SELECT *
 		FROM USERS U
 					LEFT JOIN
@@ -33,7 +33,7 @@
 					WHERE U.ID=#{id}
 </select>
 	
- <resultMap type="com.sun.app.member.MemberDTO" id="loginResult">
+ <resultMap type="MemberDTO" id="loginResult">
 
 		<id column="ID" property="id" />
 		<result column="PASSWORD" property="password" />
@@ -61,13 +61,13 @@
 
 	</resultMap>
 
-	<update id="update" parameterType="com.sun.app.member.MemberDTO">
+	<update id="update" parameterType="MemberDTO">
 		UPDATE USERS SET NAME=#{name}
 		,EMAIL=#{email},PHONE=#{phone}
 		WHERE ID=#{id}
 	</update>
 
-	<delete id="delete" parameterType="com.sun.app.member.MemberDTO">
+	<delete id="delete" parameterType="MemberDTO">
 		DELETE USERS WHERE ID=#{id}
 	</delete>
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sun.app.boards.BoardDAO;
 import com.sun.app.boards.BoardDTO;
 import com.sun.app.boards.BoardService;
+import com.sun.app.files.FileDTO;
 import com.sun.app.files.FileManager;
 import com.sun.app.boards.BoardFileDTO;
 import com.sun.app.util.Pager;
@@ -81,6 +82,13 @@ public class QnaService implements BoardService {
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return qnaDAO.getDetail(boardDTO);
+	}
+
+
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.fileDetail(fileDTO);
 	}
 
 	@Override

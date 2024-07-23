@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sun.app.util.Pager;
-
+import com.sun.app.files.FileDTO;
 public interface BoardDAO {
 	// NoticeDAO,QnaDAO
 	// totalCount
@@ -34,4 +34,7 @@ public interface BoardDAO {
 	 Integer getNum()throws Exception;
 
 	 int addFile(BoardFileDTO boardFileDTO)throws Exception;
+	 
+	 //fileDetail
+	 public FileDTO fileDetail (FileDTO fileDTO) throws Exception;
 }

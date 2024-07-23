@@ -1,7 +1,9 @@
 package com.sun.app.product;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -11,7 +13,7 @@ import javax.tools.ForwardingJavaFileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
+import com.sun.app.member.MemberDTO;
 import com.sun.app.files.FileManager;
 import com.sun.app.product.ProductFileDTO;
 import com.sun.app.util.Pager;
@@ -23,6 +25,16 @@ public class ProductService {
 	private ProductDAO productDAO;
 	@Autowired
 	private FileManager fileManager;
+	
+	public int addWish(String p_code, String id)throws Exception {
+		Map<String,Object>map =new HashMap<String, Object>();
+		map.put("p_code", p_code);
+		map.put("id", id);
+	return	productDAO.addWish(map);
+	}
+	public List<ProductDTO> wishList(MemberDTO memberDTO) throws Exception {
+		return productDAO.wishList(memberDTO);
+	}
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 		// page가 1이면 첫번째 숫자는 1
 		// 두번째숫자 10

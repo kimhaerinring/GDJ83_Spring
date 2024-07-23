@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sun.app.files.FileDTO;
 import com.sun.app.util.Pager;
 
 public interface BoardService {
@@ -25,4 +26,6 @@ public interface BoardService {
 //	 Integer getNum()throws Exception;
 //
 //	 int addFile(BoardFileDTO boardFileDTO)throws Exception;
+	 public FileDTO fileDetail (FileDTO fileDTO) throws Exception;
+
 }

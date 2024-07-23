@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-        <!-- Navigation 헤더 공동 부분 -->
+        <!-- Navigation í¤ë ê³µë ë¶ë¶ -->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/">Home</a>
@@ -18,6 +18,7 @@
 			                </c:if>
 			                <c:if test="${not empty member}">
 							<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/member/mypage">MyPage</a></li>
+									<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/product/wishList">WishList</a></li>
 			                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/member/logout">LogOut</a></li>
 			                </c:if>
                     </ul>

@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sun.app.boards.BoardDAO;
 import com.sun.app.boards.BoardDTO;
 import com.sun.app.boards.BoardFileDTO;
+import com.sun.app.files.FileDTO;
 import com.sun.app.util.Pager;;
 
 @Repository
@@ -54,7 +55,11 @@ public class NoticeDAO implements BoardDAO {
 	public void hit(BoardDTO boardDTO) throws Exception {
 		sqlSession.update(NAMESPACE + "hit", boardDTO);
 	}
-
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE + "fileDetail", fileDTO);
+	}
 
 	public int add(BoardDTO boardDTO,HttpSession session, MultipartFile[] files) throws Exception {
 		return sqlSession.insert(NAMESPACE + "add", boardDTO);

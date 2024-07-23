@@ -1,10 +1,12 @@
 package com.sun.app.boards.qnas;
 
 import java.util.List;
+import java.util.Scanner;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ScannedGenericBeanDefinition;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.sun.app.files.FileDTO;
 import com.sun.app.boards.BoardDTO;
 import com.sun.app.member.MemberDTO;
 import com.sun.app.util.Pager;
@@ -28,7 +30,7 @@ public class QnaController {
 
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "QnA";
+		return "qna";
 	}
 
 	@GetMapping("list")
@@ -93,5 +95,12 @@ public class QnaController {
 		qnaDTO.setBoardWriter(memberDTO.getId());
 		int result = qnaService.reply(qnaDTO);
 		return "redirect:./list";
+	}
+	@GetMapping("fileDown")
+	public String fileDown(FileDTO fileDTO ,Model model)throws Exception  {
+		fileDTO =qnaService.fileDetail(fileDTO);
+		model.addAttribute("file",fileDTO);
+		return "fileDown";
+		
 	}
 }

@@ -7,12 +7,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sun.app.boards.BoardDTO;
+import com.sun.app.files.FileDTO;
 import com.sun.app.member.MemberDTO;
 import com.sun.app.util.Pager;
 
@@ -102,5 +104,11 @@ public class NoticeController {
 			model.addAttribute("url", "./list");
 		}
 		return url;
+	}
+	@GetMapping("fileDown")
+	public void fileDown(FileDTO fileDTO)throws Exception  {
+		fileDTO =noticeService.fileDetail(fileDTO);
+		
+		
 	}
 }

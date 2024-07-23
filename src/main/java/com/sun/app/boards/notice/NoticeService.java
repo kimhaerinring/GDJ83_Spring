@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.sun.app.files.FileDTO;
 import com.sun.app.files.FileManager;
 import com.sun.app.boards.BoardDAO;
 import com.sun.app.boards.BoardDTO;
@@ -50,7 +52,11 @@ public class NoticeService implements BoardService {
 	public void hit(BoardDTO boardDTO) throws Exception {
 		noticeDAO.hit(boardDTO);
 	}
-
+	@Override
+	public FileDTO fileDetail(FileDTO fileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeDAO.fileDetail(fileDTO);
+	}
 	public int add(BoardDTO boardDTO,HttpSession session, MultipartFile[] files) throws Exception {
 		Integer num=noticeDAO.getNum();
 		boardDTO.setBoardNum(num);

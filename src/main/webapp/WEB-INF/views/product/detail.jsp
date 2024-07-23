@@ -44,14 +44,20 @@
                     </div>
                 </div>
 		      <div class="col-12 mb-3" align="right">
+		      <button class="btn btn-primary" type="button" id="addWish" data-product-id="${dto.p_code}">
+						<h9>즐겨찾기</h9> 
+		      </button>
 			    <a href="/accounts/add?p_code=${dto.p_code}"><button type="submit" class="btn btn-primary">가입하기</button></a>
 			    <a href="./update?p_code=${dto.p_code}"><button type="submit" class="btn btn-primary">수정하기</button></a>
 			    <a href="./delete?p_code=${dto.p_code}"><button type="submit" class="btn btn-primary">삭제하기</button></a>
 			  </div>
             </div>
         </main>
-
+<div id="wishResult">
+	
+</div>
         
 <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
+<script src="/resources/js/product/wish.js"></script>
 </body>
 </html>

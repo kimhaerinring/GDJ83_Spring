@@ -54,17 +54,17 @@
 						<tr>
 							<td><c:if test="${board eq 'Notice' }">
 									<c:forEach items="${dto.fileDTOs}" var="f">
-										<a href="/resources/upload/notice/${f.filename}">${f.oriname}
+										<a href="./fileDown?filenum=${f.filenum}">${f.oriname}
 										</a>
 									</c:forEach>
-								</c:if> <c:if test="${board eq 'QnA' }">
+								</c:if> <c:if test="${board eq 'qna' }">
 									<c:forEach items="${dto.fileDTOs}" var="f">
-										<a href="/resources/upload/qna/${f.filename}">${f.oriname}
+										<a href="./fileDown?filenum=${f.filenum}">${f.oriname}
 										</a>
 									</c:forEach>
 								</c:if></td>
 										</tr>
-	</table>
+						</table>
 				</div>
 			</div>
 

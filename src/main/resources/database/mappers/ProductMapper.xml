@@ -7,7 +7,18 @@
 
 <!-- table 명 들어가야함 겹치면 안됩 -->
 <mapper namespace="com.sun.app.product.ProductDAO">
+<insert id="addWish" parameterType="java.util.Map">
+		INSERT INTO WISHLIST 
+		VALUES (#{id},#{p_code})
+</insert>
 
+<select id="wishList" resultType="ProductDTO" parameterType="MemberDTO">
+	
+	SELECT P.* FROM WISHLIST W
+	LEFT JOIN PRODUCTS P
+		ON P.P_CODE =W.P_CODE
+	 WHERE W.ID=#{id}
+</select>
 
 	<select id="getList" resultType="ProductDTO"
 		parameterType="com.sun.app.util.Pager">
@@ -95,6 +106,9 @@
 		P_CODE= #{p_code}
 	</select>
 
+	<select id="fileDetail" parameterType="FileDTO" resultType="FileDTO">
+		SELECT * FROM QNAFILES WHERE FILENUM=#{filenum}
+	</select>
 
 </mapper> 
 
