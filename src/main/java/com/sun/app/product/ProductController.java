@@ -37,7 +37,10 @@ model.addAttribute("msg",result);
 		model.addAttribute("list",ar);
 	}
 	@GetMapping("deleteWishList")
-	public String deleteWishList(String p_code,Model model,HttpSession session) throws Exception{
+	public String deleteWishList(String [] p_code,Model model,HttpSession session) throws Exception{
+		for(String bn:p_code) {
+			
+		}
 		MemberDTO memberDTO=(MemberDTO)session.getAttribute("member");
 		int result=productService.deleteWishList(p_code, memberDTO.getId());
 		model.addAttribute("msg",result);

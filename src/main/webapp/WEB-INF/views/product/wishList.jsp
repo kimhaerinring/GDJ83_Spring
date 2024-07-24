@@ -32,12 +32,14 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center text-center">
                     <p>🌱상세내용을 보시려면, 상품명을 클릭해주세요🌱</p>
                     <div class="col-md-10 col-lg-8 col-xl-7">
+						<div>
+							<button type="button" class="btn btn-primary" id="delAll">체크 항목 삭제</button>
+						</div>
                         <table class="table">
 						  <thead>
 						    <tr>
 						    <th>
-						    	<input type="checkbox" id="checkall" value='selectall' name="selectall"
-								onclick='selectAll(this)' >
+						    	<input type="checkbox" id="all">
 						    </th>
 						      <th scope="col">상품번호</th>
 						      <th scope="col">상품명</th>
@@ -50,7 +52,7 @@
 						    <c:forEach items="${list}" var="ar" varStatus="i">
 							    <tr id="w${i.index}">
 							    <td>
-							    	<input type="checkbox" class="ch" name="product"  onclick='checkSelectAll(this)'>
+							    	<input type="checkbox" class="ch" data-wish-id="${ar.p_code}" data-del-id="w${i.index}">
 							    </td>
 							      <td>${ar.p_code}</td>
 							      <td><a href="./detail?p_code=${ar.p_code}">${ar.ac_name}</a></td>
@@ -64,7 +66,7 @@
                     </div>
     
         <!-- 검색 버튼 -->
-	<form action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center justify-content-end"">
+	<form action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center justify-content-end">
 	  <div class="col-12">
 	    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 	    <select name = "kind" class="form-select" id="inlineFormSelectPref">

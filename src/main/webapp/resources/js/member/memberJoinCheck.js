@@ -20,7 +20,14 @@ const pwerror = document.getElementById("pwerror");
 const pweeqrror = document.getElementById("pweeqrror")
 const pwc = document.getElementById("inputPasswordCheck");
 
+id.addEventListener("change",function(){
+    let url=""
+    fetch(url,{
+        method:"POST"
+    })
 
+    }
+)
 
 
 

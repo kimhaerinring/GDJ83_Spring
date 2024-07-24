@@ -8,10 +8,12 @@ const wishResult = document.getElementById("wishResult");
 //함수 선언 
 //function [함수명] (){}
 //()=>{}
+
+
 addWish.addEventListener("click",(e)=>{
     let id =addWish.getAttribute("data-product-id")
    
-        fetch("./addWish?id="+id,{
+        fetch("./addWish?p_code="+id,{
     method:"GET" 
      })
      .then((res)=>{return res.text()})

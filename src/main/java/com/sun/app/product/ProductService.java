@@ -20,7 +20,7 @@ import com.sun.app.product.ProductFileDTO;
 import com.sun.app.util.Pager;
 
 @Service
-public class ProductService {
+public class ProductService {	
 
 	@Autowired
 	private ProductDAO productDAO;
@@ -34,11 +34,19 @@ public class ProductService {
 	return	productDAO.addWish(map);
 	}
 
-	public int deleteWishList( String p_code,String id) throws Exception {
+	public int deleteWishList( String [] p_code,String id) throws Exception {
+		int result=0;
 		Map<String,Object>map =new HashMap<String, Object>();
-		map.put("p_code", p_code);
 		map.put("id", id);
-		return	productDAO.deleteWishList(map);
+		map.put("ids",p_code);
+		result=	productDAO.deleteWishList(map);
+//		for(String bn:p_code) {
+//			Map<String,Object>map =new HashMap<String, Object>();
+//			map.put("p_code", bn);
+//			map.put("id", id);
+//			result=	productDAO.deleteWishList(map);
+//		}
+		return result;
 	}
 
 	public List<ProductDTO> wishList(MemberDTO memberDTO) throws Exception {
