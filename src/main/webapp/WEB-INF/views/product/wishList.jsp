@@ -36,7 +36,8 @@
 						  <thead>
 						    <tr>
 						    <th>
-						    	<input type="checkbox">
+						    	<input type="checkbox" id="checkall" value='selectall' name="selectall"
+								onclick='selectAll(this)' >
 						    </th>
 						      <th scope="col">상품번호</th>
 						      <th scope="col">상품명</th>
@@ -49,7 +50,7 @@
 						    <c:forEach items="${list}" var="ar" varStatus="i">
 							    <tr id="w${i.index}">
 							    <td>
-							    	<input type="checkbox"> 
+							    	<input type="checkbox" class="ch" name="product"  onclick='checkSelectAll(this)'>
 							    </td>
 							      <td>${ar.p_code}</td>
 							      <td><a href="./detail?p_code=${ar.p_code}">${ar.ac_name}</a></td>

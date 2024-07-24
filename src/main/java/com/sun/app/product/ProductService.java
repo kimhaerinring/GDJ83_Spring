@@ -12,6 +12,7 @@ import javax.tools.ForwardingJavaFileManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import com.sun.app.member.MemberDTO;
 import com.sun.app.files.FileManager;
@@ -32,6 +33,14 @@ public class ProductService {
 		map.put("id", id);
 	return	productDAO.addWish(map);
 	}
+
+	public int deleteWishList( String p_code,String id) throws Exception {
+		Map<String,Object>map =new HashMap<String, Object>();
+		map.put("p_code", p_code);
+		map.put("id", id);
+		return	productDAO.deleteWishList(map);
+	}
+
 	public List<ProductDTO> wishList(MemberDTO memberDTO) throws Exception {
 		return productDAO.wishList(memberDTO);
 	}

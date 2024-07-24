@@ -37,7 +37,7 @@ public class HomeController {
 //		Cookie cookie = new Cookie("test", "KIMHAERIN");
 //		cookie.setMaxAge(60);
 //		response.addCookie(cookie);
-		System.out.print(request.getRemoteAddr() + ": ");
+		System.out.println(request.getRemoteAddr() + ": ");
 		return "index";
 	}
 

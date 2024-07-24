@@ -7,6 +7,9 @@
 
 <!-- table 명 들어가야함 겹치면 안됩 -->
 <mapper namespace="com.sun.app.product.ProductDAO">
+<delete id="deleteWishList" parameterType="java.util.Map">
+	DELETE WISHLIST WHERE ID=#{id}  AND  P_CODE=#{p_code}
+</delete>
 <insert id="addWish" parameterType="java.util.Map">
 		INSERT INTO WISHLIST 
 		VALUES (#{id},#{p_code})

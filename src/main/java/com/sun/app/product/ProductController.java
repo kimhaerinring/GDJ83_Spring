@@ -22,6 +22,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	
 	@GetMapping("addWish")
 public String addWish(String p_code, HttpSession session,Model model)throws Exception {
 MemberDTO memberDTO=(MemberDTO)session.getAttribute("member");
@@ -35,7 +36,13 @@ model.addAttribute("msg",result);
 		List<ProductDTO>ar =productService.wishList(memberDTO);
 		model.addAttribute("list",ar);
 	}
-	
+	@GetMapping("deleteWishList")
+	public String deleteWishList(String p_code,Model model,HttpSession session) throws Exception{
+		MemberDTO memberDTO=(MemberDTO)session.getAttribute("member");
+		int result=productService.deleteWishList(p_code, memberDTO.getId());
+		model.addAttribute("msg",result);
+			return "commons/result";
+	}
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void getList(Model model, Pager pager) throws Exception {
 		System.out.println(" list");
