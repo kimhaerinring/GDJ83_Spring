@@ -24,10 +24,7 @@ public class MemberController {
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(MemberDTO memberDTO, MultipartFile files, HttpSession session) throws Exception {
-		System.out.println(session.getServletContext());
-		System.out.println(files.getName());
-		System.out.println(files.getOriginalFilename());
-		System.out.println(files.getSize());
+	
 		int result = memberService.join(memberDTO, files, session);
 		String url = "";
 		if (result > 0) {

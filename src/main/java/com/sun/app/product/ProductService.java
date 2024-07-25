@@ -15,9 +15,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import com.sun.app.member.MemberDTO;
+import com.sun.app.boards.qnas.QnaDTO;
 import com.sun.app.files.FileManager;
 import com.sun.app.product.ProductFileDTO;
 import com.sun.app.util.Pager;
+import com.sun.app.util.ProductCommentPager;
 
 @Service
 public class ProductService {	
@@ -51,6 +53,12 @@ public class ProductService {
 
 	public List<ProductDTO> wishList(MemberDTO memberDTO) throws Exception {
 		return productDAO.wishList(memberDTO);
+	}
+	public List<ProductCommentsDTO> commentList(ProductCommentPager productCommentPager) throws Exception {
+		productCommentPager.makeRow();
+		productCommentPager.makeNum(productDAO.commentTotalCount(productCommentPager));
+		
+		return productDAO.commentList(productCommentPager);
 	}
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 		// page가 1이면 첫번째 숫자는 1
@@ -107,8 +115,15 @@ public class ProductService {
 	public int delete(ProductDTO productDTO) throws Exception {
 		return productDAO.delete(productDTO);
 	}
-
+	public int commentDelete(ProductCommentsDTO productCommentsDTO) throws Exception {
+		return productDAO.commentDelete(productCommentsDTO);
+	}
+	public int commentAdd(ProductCommentsDTO productCommentsDTO) throws Exception {
+		return productDAO.commentAdd(productCommentsDTO);
+	}
 	public int update(ProductDTO productDTO) throws Exception {
 		return productDAO.update(productDTO);
 	}
+
+	
 }

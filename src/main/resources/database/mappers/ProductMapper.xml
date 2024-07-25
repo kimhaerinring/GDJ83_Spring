@@ -4,15 +4,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <!-- table 명 들어가야함 겹치면 안됩 -->
 <mapper namespace="com.sun.app.product.ProductDAO">
+<delete id="commentDelete" parameterType="ProductCommentsDTO">
+ DELETE COMMENTS WHERE COMMENTS_NUM=#{comments_num}
+</delete>
+
 <delete id="deleteWishList" parameterType="java.util.Map">
 	DELETE WISHLIST WHERE ID=#{id}  AND  P_CODE IN 
 	<foreach collection="ids"  item="item"  open="("  separator=","  close=")">
 		#{item}             
 	</foreach>
 </delete>
+
 <insert id="addWish" parameterType="java.util.Map">
 		INSERT INTO WISHLIST 
 		VALUES (#{id},#{p_code})
@@ -25,6 +29,27 @@
 		ON P.P_CODE =W.P_CODE
 	 WHERE W.ID=#{id}
 </select>
+
+<select id="commentTotalCount"  resultType="java.lang.Long" parameterType="ProductCommentPager">
+	SELECT COUNT (COMMENTS_NUM) FROM COMMENTS
+	WHERE P_CODE =#{p_code}
+</select>
+<select id="commentList" resultType="ProductCommentsDTO" parameterType="ProductCommentPager">
+	SELECT * FROM
+	(
+		SELECT ROWNUM R,C.* FROM
+		(
+			SELECT * FROM COMMENTS 
+			WHERE P_CODE =#{p_code}
+			ORDER BY  COMMENTS_NUM DESC
+		)C
+	)
+	WHERE R BETWEEN #{startRow} AND #{lastRow}
+</select>
+<insert id="commentAdd" parameterType="ProductCommentsDTO">
+INSERT INTO COMMENTS VALUES
+(PRODUCTS_SEQ.NEXTVAL,#{id},#{comments_Content},#{p_code},SYSDATE)
+</insert>
 
 	<select id="getList" resultType="ProductDTO"
 		parameterType="com.sun.app.util.Pager">

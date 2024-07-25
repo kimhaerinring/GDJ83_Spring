@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.sun.app.boards.qnas.QnaDTO;
 import com.sun.app.member.MemberDTO;
 import com.sun.app.util.Pager;
+import com.sun.app.util.ProductCommentPager;
 
 @Controller
 @RequestMapping("/product/*")
@@ -21,6 +24,16 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+	
+	@PostMapping("commentAdd")
+	public String commentAdd(ProductCommentsDTO productCommentsDTO, HttpSession session,Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		productCommentsDTO.setId(memberDTO.getId());
+		int result = productService.commentAdd(productCommentsDTO);
+		
+		model.addAttribute("msg",result);
+		return "commons/result";
+	}
 	
 	
 	@GetMapping("addWish")
@@ -36,6 +49,23 @@ model.addAttribute("msg",result);
 		List<ProductDTO>ar =productService.wishList(memberDTO);
 		model.addAttribute("list",ar);
 	}
+	@GetMapping("commentList")
+	public void commentList(Model model,ProductCommentPager productCommentPager) throws Exception{
+		List<ProductCommentsDTO>ar =productService.commentList(productCommentPager);
+		model.addAttribute("list",ar);
+		model.addAttribute("pager",productCommentPager);
+		
+	}
+	
+	@PostMapping("commentDelete")
+	public String commentDelete(ProductCommentsDTO productCommentsDTO,Model model) throws Exception {
+		
+		int result=productService.commentDelete(productCommentsDTO);
+		model.addAttribute("msg",result);
+			return "commons/result";
+		}
+	
+	
 	@GetMapping("deleteWishList")
 	public String deleteWishList(String [] p_code,Model model,HttpSession session) throws Exception{
 		for(String bn:p_code) {
