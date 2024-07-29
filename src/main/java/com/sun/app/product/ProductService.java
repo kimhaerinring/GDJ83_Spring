@@ -124,6 +124,8 @@ public class ProductService {
 	public int update(ProductDTO productDTO) throws Exception {
 		return productDAO.update(productDTO);
 	}
-
+public int  commentUpdate(ProductCommentsDTO productCommentsDTO) throws Exception{
+	return productDAO.commentUpdate(productCommentsDTO);
+}
 	
 }

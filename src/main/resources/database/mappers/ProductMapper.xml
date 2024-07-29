@@ -6,6 +6,12 @@
 
 <!-- table 명 들어가야함 겹치면 안됩 -->
 <mapper namespace="com.sun.app.product.ProductDAO">
+<update id="commentUpdate" parameterType="ProductCommentsDTO">
+UPDATE COMMENTS SET COMMENTS_CONTENT =#{comments_Content}
+WHERE COMMENTS_NUM =#{comments_num}
+</update>
+
+
 <delete id="commentDelete" parameterType="ProductCommentsDTO">
  DELETE COMMENTS WHERE COMMENTS_NUM=#{comments_num}
 </delete>

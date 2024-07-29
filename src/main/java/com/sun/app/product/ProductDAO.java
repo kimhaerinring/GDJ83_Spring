@@ -18,6 +18,12 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.sun.app.product.ProductDAO.";
+	
+	public int commentUpdate(ProductCommentsDTO productCommentsDTO) throws Exception{
+		return sqlSession.update(NAMESPACE + "commentUpdate", productCommentsDTO);
+	}
+	
+	
 	public int commentDelete(ProductCommentsDTO productCommentsDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE + "commentDelete", productCommentsDTO);
 	}

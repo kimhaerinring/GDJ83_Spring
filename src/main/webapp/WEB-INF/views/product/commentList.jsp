@@ -16,20 +16,19 @@ pageEncoding="UTF-8"%>
                     </tr>
                   </thead>
                   <tbody class="table-group-divider">
-                    <c:forEach items="${list}" var="ar">
+                    <c:forEach items="${list}" var="ar" varStatus="i">
                         <tr>
                           <td>${ar.comments_num}</td>
                           <td>${ar.id}</td>
                           <td>${ar.p_code}</td>
                           <td>${ar.comments_Date}</td>
-                          <td>${ar.comments_Content}</td>
-                          <td><c:if test="${ar.id eq member.id}"><button class="del" data-comment-del="${ar.comments_num}" type="button">x</button></c:if></td>
+                          <td id="con${i.index}">${ar.comments_Content}</td>
+                          <td><c:if test="${ar.id eq member.id}"><button class="del" data-comment-del="${ar.comments_num}" type="button">삭제</button></c:if></td>
+                          <td><c:if test="${ar.id eq member.id}"><button class="ups" data-comment-del="${ar.comments_num}"  data-update-con="con${i.index}"    type="button" data-bs-toggle="modal" data-bs-target="#commentModal">수정</button></c:if></td>
                         </tr>
                    </c:forEach>
-                  </tbody>
                 </table>
-            </div>
-        </div>
+      
              
         <!-- 페이지 버튼 -->
 	  <nav aria-label="Page navigation example">
@@ -52,4 +51,3 @@ pageEncoding="UTF-8"%>
 	    </li>
 	  </ul>
 	</nav>
-      <button class="pn">TEST</button>

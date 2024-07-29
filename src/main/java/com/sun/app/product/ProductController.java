@@ -25,6 +25,14 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	@PostMapping("commentUpdate")
+	public String commentUpdate(ProductCommentsDTO productCommentsDTO,Model  model) throws Exception{
+		int result = productService.commentUpdate(productCommentsDTO);
+		model.addAttribute("msg",result);
+		return "commons/result";
+	}
+	
+	
 	@PostMapping("commentAdd")
 	public String commentAdd(ProductCommentsDTO productCommentsDTO, HttpSession session,Model model) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
@@ -153,4 +161,8 @@ model.addAttribute("msg",result);
 
 	}
 
+	
+	
+	
+	
 }
