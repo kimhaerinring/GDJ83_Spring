@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/summer.jsp"></c:import>
 </head>
 <body>
 <c:import url="/WEB-INF/views/template/header_nav.jsp"></c:import>
@@ -32,9 +33,9 @@
 	  <label for="formGroupExampleInput" class="form-label">상품명</label>
 	  <input type="text" class="form-control" id="formGroupExampleInput" name = "ac_name">
 	</div>
-	<div class="mb-3">
+	<div class="mb-3"  >
 	  <label for="formGroupExampleInput" class="form-label">상품설명</label>
-	  <input type="text" class="form-control" id="formGroupExampleInput" name = "script">
+	  <textarea  class="form-control" id="bookDetail" name = "script"></textarea>
 	</div>
 	<div class="mb-3">
 	  <label for="formGroupExampleInput" class="form-label">이자율</label>
@@ -45,8 +46,11 @@
 				</div>
 				<div id="result"></div>
 	</div>
-	<script type="text/javascript" src="../resources/js/commons/files.js"></script>
-	<script >setMax(5);</script>
+	<script src="../resources/js/commons/files.js"></script>
+	<script  type="text/javascript" >setMax(5);
+	$("#bookDetail").summernote();
+	</script>
+	
 	<button type = "submit" class="btn btn-primary mb-3">추가하기</button>
 	</form>
 </div>      

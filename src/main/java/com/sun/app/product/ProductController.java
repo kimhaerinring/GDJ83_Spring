@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -154,15 +156,20 @@ model.addAttribute("msg",result);
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(ProductDTO productDTO) throws Exception {
+	public String update( @ModelAttribute ProductDTO productDTO) throws Exception {
 		int result = productService.update(productDTO);
 
 		return "redirect:./list";
 
 	}
-
+@ExceptionHandler(Exception.class)
+	public void exceptionHandler(Exception exception) {
+		
+	}
+@ExceptionHandler(Throwable.class)
+public void exceptionHandler2(Exception exception) {
 	
-	
+}
 	
 	
 }
